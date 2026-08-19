@@ -37,7 +37,7 @@
 }
 
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav) + 12px)}
 html,body{overflow-x:clip}
 body{
   margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);
