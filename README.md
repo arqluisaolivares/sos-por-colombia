@@ -17,7 +17,8 @@ Una iniciativa de la **Fundación Profesionales Amigos**.
 | **Profesionales** | Directorio e inscripción de arquitectos, ingenieros, médicos, psicólogos, abogados, topógrafos. |
 | **Voluntarios** | Directorio e inscripción por oficios y habilidades: mampostería, conducción, cocina, censos. |
 | **¿Dónde consigo ayuda?** | Líneas oficiales de emergencia, puntos de acopio, albergues y guía por tipo de necesidad. |
-| **Panel de moderación** | Aprobar, rechazar y marcar como resuelto cada registro. Acceso restringido por correo. |
+| **Tablero de resultados** | Página pública con las cifras: familias publicadas, acompañadas y resueltas, por departamento y por necesidad. |
+| **Panel de moderación** | Aprobar, rechazar y marcar como resuelto cada registro, y avisar por WhatsApp. Acceso restringido por correo. |
 
 ### Cómo protege a las familias
 
@@ -27,6 +28,29 @@ Una iniciativa de la **Fundación Profesionales Amigos**.
 - Las fotografías se publican solo si la familia marca la autorización expresa.
 - El sitio web lee la base de datos a través de **vistas** que ya excluyen los campos reservados: aunque
   alguien inspeccione el código de la página, no puede llegar a los datos de contacto.
+
+### Avisos por WhatsApp
+
+Todos los formularios piden un **número de WhatsApp**, y desde el panel de moderación
+hay un botón verde que abre WhatsApp con el mensaje ya escrito:
+
+| Botón | Qué manda y a quién |
+|---|---|
+| **Avisar familia** (en Casos) | Le confirma a la familia que su caso quedó publicado, con el código y el enlace. |
+| **Avisar familia** (en Apadrinamientos) | Le dice a la familia quién la va a acompañar, con el número del profesional y a qué se comprometió. |
+| **Avisar padrino** | Le entrega al profesional los datos de contacto de la familia y lo que necesita. |
+| **Avisar** (en Profesionales y Voluntarios) | Confirma que la inscripción quedó aprobada. |
+| **Resumen al equipo** | Arma un mensaje con todo lo que está pendiente por revisar, para mandarlo al grupo del equipo. |
+
+El moderador solo revisa el texto y presiona enviar. **No cuesta nada y no requiere
+ningún trámite con Meta.** El sistema deja registrada la fecha del aviso para que
+nadie reciba el mismo mensaje dos veces.
+
+> **¿Y el envío automático?** Requiere una cuenta de WhatsApp Business API verificada
+> por Meta a nombre de la Fundación, con costo por mensaje. El código quedó preparado:
+> cuando la cuenta exista, se implementa `enviarAutomatico()` en
+> `assets/js/whatsapp.js` desde una Edge Function de Supabase y el resto del sitio no
+> cambia. Nunca se debe poner el token de Meta en el navegador: quedaría a la vista.
 
 ---
 
@@ -55,7 +79,9 @@ Supabase es gratuito para un proyecto de este tamaño.
 3. Copie el contenido completo de `supabase/01_esquema.sql`, péguelo y presione **Run**.
 4. Abra otra consulta, **cambie el correo del administrador** en `supabase/02_datos_iniciales.sql`,
    pegue el archivo y presione **Run**.
-5. Menú lateral → **Project Settings → API**. Copie:
+5. Abra una tercera consulta y ejecute `supabase/03_avisos_whatsapp.sql`
+   (registro de avisos y vistas del tablero).
+6. Menú lateral → **Project Settings → API**. Copie:
    - *Project URL*
    - la llave *anon public*
 
@@ -135,6 +161,7 @@ sos-por-colombia/
 ├── voluntarios.html        Directorio + inscripción de voluntarios
 ├── ayuda.html              ¿Dónde consigo ayuda?
 ├── admin.html              Panel de moderación
+├── tablero.html            Tablero público de resultados
 ├── privacidad.html         Política de tratamiento de datos
 ├── assets/
 │   ├── css/styles.css      Sistema de diseño
@@ -146,17 +173,21 @@ sos-por-colombia/
 │       ├── api.js          Conexión con Supabase
 │       ├── ui.js           Encabezado, pie, formularios, avisos
 │       ├── componentes.js  Tarjetas
+│       ├── iconos.js       Juego de íconos dibujados
+│       ├── graficas.js     Barras y cifras del tablero
+│       ├── whatsapp.js     Mensajes y enlaces de WhatsApp
 │       └── pag-*.js        Lógica de cada página
 └── supabase/
     ├── 01_esquema.sql      Tablas, vistas y políticas de seguridad
-    └── 02_datos_iniciales.sql  Administradores y canales oficiales
+    ├── 02_datos_iniciales.sql  Administradores y canales oficiales
+    └── 03_avisos_whatsapp.sql  Registro de avisos y vistas del tablero
 ```
 
 ---
 
 ## Pendientes sugeridos para una siguiente versión
 
-- Correo automático de confirmación a la familia y al padrino (Supabase Edge Function + Resend).
+- Envío automático de WhatsApp cuando la Fundación tenga cuenta de WhatsApp Business API.
 - Mapa de casos y puntos de acopio.
 - Seguimiento del caso con línea de tiempo y evidencia fotográfica del avance.
 - Exportación a Excel de los casos para reportes ante financiadores.

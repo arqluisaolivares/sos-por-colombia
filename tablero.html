@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tablero de resultados · SOS por Colombia</title>
+<meta name="description" content="Cuántas familias han sido atendidas, cuántas están apadrinadas y cuántos casos se han resuelto tras el sismo del 10 de agosto de 2026.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<main>
+  <section style="background:var(--navy);color:#fff;padding:44px 0 40px">
+    <div class="contenedor">
+      <h1 style="color:#fff;font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:.3em">Tablero de resultados</h1>
+      <p style="color:rgba(255,255,255,.86);max-width:660px;margin:0">
+        Todo lo que pasa en la plataforma, a la vista. Estas cifras se actualizan solas
+        cada vez que un caso se publica, se apadrina o se resuelve.
+      </p>
+    </div>
+  </section>
+
+  <section class="seccion seccion--ajustada">
+    <div class="contenedor">
+
+      <div class="rejilla rejilla--4" id="cifras" style="margin-bottom:26px">
+        <div class="cargando"><div class="girador"></div>Cargando cifras…</div>
+      </div>
+
+      <div id="avance" style="margin-bottom:22px"></div>
+
+      <div class="rejilla rejilla--2" style="align-items:start">
+        <div id="departamentos"></div>
+        <div id="necesidades"></div>
+      </div>
+
+      <div class="rejilla rejilla--2" style="margin-top:22px;align-items:start">
+        <div id="personas"></div>
+        <div class="tarjeta">
+          <h3>Cómo se leen estas cifras</h3>
+          <p style="font-size:.92rem;color:var(--ink-2)">
+            Solo se cuentan los casos ya verificados por el equipo de moderación. Los casos en
+            revisión no aparecen aquí. Ningún dato personal sale de esta página: son totales
+            agregados por departamento y por tipo de necesidad.
+          </p>
+          <p style="font-size:.92rem;color:var(--ink-2);margin:0">
+            Un caso queda <strong>apadrinado</strong> cuando un profesional o un voluntario
+            registra un compromiso concreto y el equipo lo confirma. Queda <strong>resuelto</strong>
+            cuando la familia confirma que lo prometido se cumplió.
+          </p>
+        </div>
+      </div>
+
+      <div class="tarjeta centro" style="margin-top:30px;background:#EEF2FA;border-color:#C7D2E8">
+        <h3>¿Quiere que este tablero se mueva?</h3>
+        <p style="color:var(--ink-2);max-width:560px;margin:0 auto 18px">
+          Cada caso apadrinado es una familia menos a la intemperie.
+        </p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <a class="boton boton--primario" href="casos.html">Apadrinar una familia</a>
+          <a class="boton boton--linea" href="profesionales.html#inscribirme">Inscribirme como profesional</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<script type="module" src="assets/js/pag-tablero.js"></script>
+</body>
+</html>

@@ -62,9 +62,11 @@
             </div>
             <div class="campos-fila">
               <div class="campo">
-                <label for="telefono">Teléfono o WhatsApp <span style="color:var(--red)">*</span></label>
-                <input type="tel" id="telefono" name="telefono" required autocomplete="tel" placeholder="300 000 0000">
-                <span class="ayuda">Reservado. Solo se comparte con quien apadrine el caso.</span>
+                <label for="telefono">Número de WhatsApp <span style="color:var(--red)">*</span></label>
+                <input type="tel" id="telefono" name="telefono" required autocomplete="tel"
+                       inputmode="numeric" data-whatsapp placeholder="300 000 0000">
+                <span class="ayuda">Por aquí le avisamos cuando su caso se publique y cuando alguien
+                se comprometa a acompañarlos. Reservado: solo se comparte con quien apadrine el caso.</span>
               </div>
               <div class="campo">
                 <label for="email">Correo electrónico</label>

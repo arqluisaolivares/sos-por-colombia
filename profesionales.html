@@ -103,8 +103,10 @@
             <span class="ayuda">Con este correo podrá apadrinar casos. Reservado.</span>
           </div>
           <div class="campo">
-            <label for="telefono">Teléfono o WhatsApp <span style="color:var(--red)">*</span></label>
-            <input type="tel" id="telefono" name="telefono" required autocomplete="tel">
+            <label for="telefono">Número de WhatsApp <span style="color:var(--red)">*</span></label>
+            <input type="tel" id="telefono" name="telefono" required autocomplete="tel"
+                   inputmode="numeric" data-whatsapp placeholder="300 000 0000">
+            <span class="ayuda">Por aquí le mandamos los datos de la familia que decida acompañar.</span>
           </div>
         </div>
 

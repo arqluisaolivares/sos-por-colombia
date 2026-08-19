@@ -76,8 +76,10 @@
             <input type="email" id="email" name="email" required autocomplete="email">
           </div>
           <div class="campo">
-            <label for="telefono">Teléfono o WhatsApp <span style="color:var(--red)">*</span></label>
-            <input type="tel" id="telefono" name="telefono" required autocomplete="tel">
+            <label for="telefono">Número de WhatsApp <span style="color:var(--red)">*</span></label>
+            <input type="tel" id="telefono" name="telefono" required autocomplete="tel"
+                   inputmode="numeric" data-whatsapp placeholder="300 000 0000">
+            <span class="ayuda">Por aquí lo contactamos cuando haya una jornada donde encaje.</span>
           </div>
         </div>
 
