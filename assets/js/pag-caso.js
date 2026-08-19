@@ -166,8 +166,10 @@ function abrirApadrinar(c) {
           <input type="text" id="ap-nombre" name="nombre" required autocomplete="name">
         </div>
         <div class="campo">
-          <label for="ap-telefono">Teléfono de contacto</label>
-          <input type="tel" id="ap-telefono" name="telefono" autocomplete="tel" placeholder="300 000 0000">
+          <label for="ap-telefono">Número de WhatsApp <span style="color:var(--red)">*</span></label>
+          <input type="tel" id="ap-telefono" name="telefono" required autocomplete="tel"
+                 inputmode="numeric" data-whatsapp placeholder="300 000 0000">
+          <span class="ayuda">Es el número que le pasamos a la familia.</span>
         </div>
       </div>
       <div class="campo">

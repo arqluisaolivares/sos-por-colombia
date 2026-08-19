@@ -4,8 +4,13 @@ import {
   montarBase, $, $$, esc, fecha, aviso, vacio, cargando, modal, leerFormulario, validar, ocupar
 } from './ui.js';
 import {
-  sesion, capturarSesionDeUrl, enviarEnlaceAcceso, traerTodo, cambiarEstado, eliminar
+  sesion, capturarSesionDeUrl, enviarEnlaceAcceso, traerTodo, cambiarEstado, eliminar, marcarAvisado
 } from './api.js';
+import {
+  abrir as abrirWhatsApp, esWhatsApp, mostrar as mostrarTelefono,
+  mensajeFamiliaApadrinada, mensajeProfesional, mensajeCasoAprobado,
+  mensajeInscripcionAprobada, mensajeResumenEquipo
+} from './whatsapp.js';
 import { M_PROFESIONES, M_NECESIDADES, M_HABILIDADES, M_TIPOS_PUNTO, nombreDe } from './datos.js';
 import { MODO_DEMO } from './config.js';
 
@@ -17,6 +22,7 @@ const contenido = $('#contenido');
 
 let TABLA  = 'casos';
 let ESTADO = 'pendiente';
+let CASOS_POR_ID = {};
 
 /* ---------------- Sesión ---------------- */
 capturarSesionDeUrl();
@@ -30,6 +36,7 @@ function refrescarAcceso() {
   acceso.classList.toggle('oculto', dentro);
   panel.classList.toggle('oculto', !dentro);
   $('#salir').classList.toggle('oculto', !dentro);
+  $('#resumen-equipo').classList.toggle('oculto', !dentro);
   const s = sesion.leer();
   $('#quien').textContent = MODO_DEMO
     ? 'Modo demostración · los cambios no se guardan'
@@ -79,6 +86,10 @@ $$('#estados button').forEach(b => b.addEventListener('click', () => {
 async function cargar() {
   contenido.innerHTML = cargando('Cargando…');
   try {
+    if (TABLA === 'apadrinamientos' && !Object.keys(CASOS_POR_ID).length) {
+      const todos = await traerTodo('casos', {});
+      CASOS_POR_ID = Object.fromEntries(todos.map(c => [c.id, c]));
+    }
     const filas = await traerTodo(TABLA, TABLA === 'apadrinamientos' ? {} : { estado: ESTADO || undefined });
     pintarResumen();
     contenido.innerHTML = filas.length ? tabla(filas) : vacio('No hay registros con ese filtro', '', '📋');
@@ -126,6 +137,26 @@ function tabla(filas) {
   </table></div>`;
 }
 
+function botonesWhatsApp(r) {
+  if (TABLA === 'apadrinamientos') {
+    const caso = CASOS_POR_ID[r.caso_id];
+    const bf = (caso && esWhatsApp(caso.telefono))
+      ? `<button class="boton boton--whatsapp boton--pequeno" data-wa="familia" data-id="${esc(r.id)}">Avisar familia</button>` : '';
+    const bp = esWhatsApp(r.telefono)
+      ? `<button class="boton boton--whatsapp boton--pequeno" data-wa="profesional" data-id="${esc(r.id)}">Avisar padrino</button>` : '';
+    return bf + bp;
+  }
+  if (TABLA === 'casos') {
+    return esWhatsApp(r.telefono)
+      ? `<button class="boton boton--whatsapp boton--pequeno" data-wa="caso" data-id="${esc(r.id)}">Avisar familia</button>` : '';
+  }
+  if (TABLA === 'profesionales' || TABLA === 'voluntarios') {
+    return esWhatsApp(r.telefono)
+      ? `<button class="boton boton--whatsapp boton--pequeno" data-wa="inscripcion" data-id="${esc(r.id)}">Avisar</button>` : '';
+  }
+  return '';
+}
+
 function fila(r) {
   const acciones = `
     <div style="display:flex;gap:6px;flex-wrap:wrap">
@@ -138,6 +169,7 @@ function fila(r) {
         ${TABLA === 'casos' && r.estado === 'aprobado' ? `<button class="boton boton--dorado boton--pequeno" data-accion="resuelto" data-id="${esc(r.id)}">Resuelto</button>` : ''}
         ${r.estado !== 'rechazado' ? `<button class="boton boton--linea boton--pequeno" data-accion="rechazado" data-id="${esc(r.id)}">Rechazar</button>` : ''}
       `}
+      ${botonesWhatsApp(r)}
       <button class="boton boton--linea boton--pequeno" data-ver="${esc(r.id)}">Ver</button>
     </div>`;
 
@@ -202,6 +234,44 @@ function conectarAcciones() {
     } catch (e) { restaurar(); aviso('Error: ' + e.message, 'error'); }
   }));
 
+  $$('[data-wa]').forEach(b => b.addEventListener('click', () => {
+    const r = JSON.parse(b.closest('tr').dataset.fila);
+    const tipo = b.dataset.wa;
+    let ok = false;
+
+    if (tipo === 'caso') {
+      ok = abrirWhatsApp(r.telefono, mensajeCasoAprobado(r, enlaceCaso(r)));
+      if (ok) marcarAvisado('casos', r.id, 'avisado_en');
+    }
+    if (tipo === 'inscripcion') {
+      const perfil = TABLA === 'profesionales' ? 'profesional' : 'voluntario';
+      ok = abrirWhatsApp(r.telefono, mensajeInscripcionAprobada(r, perfil));
+      if (ok) marcarAvisado(TABLA, r.id, 'avisado_en');
+    }
+    if (tipo === 'familia') {
+      const caso = CASOS_POR_ID[r.caso_id];
+      if (caso) {
+        ok = abrirWhatsApp(caso.telefono, mensajeFamiliaApadrinada(caso, r));
+        if (ok) marcarAvisado('apadrinamientos', r.id, 'aviso_familia_en');
+      }
+    }
+    if (tipo === 'profesional') {
+      const caso = CASOS_POR_ID[r.caso_id];
+      if (caso) {
+        ok = abrirWhatsApp(r.telefono, mensajeProfesional(caso, r));
+        if (ok) marcarAvisado('apadrinamientos', r.id, 'aviso_profesional_en');
+      }
+    }
+
+    if (ok) {
+      b.textContent = 'Enviado ✓';
+      b.classList.remove('boton--whatsapp');
+      b.classList.add('boton--linea');
+    } else {
+      aviso('Ese número no sirve para WhatsApp. Revíselo en la ficha del registro.', 'error');
+    }
+  }));
+
   $$('[data-ver]').forEach(b => b.addEventListener('click', () => {
     const r = JSON.parse(b.closest('tr').dataset.fila);
     const filas = Object.entries(r)
@@ -211,5 +281,31 @@ function conectarAcciones() {
     modal(`<h2 style="font-size:1.2rem">Detalle del registro</h2><dl style="margin:0">${filas}</dl>`);
   }));
 }
+
+function enlaceCaso(c) {
+  const base = location.origin + location.pathname.replace(/[^/]*$/, '');
+  return `${base}caso.html?id=${encodeURIComponent(c.id)}`;
+}
+
+/* ---------------- Resumen para el equipo ---------------- */
+$('#resumen-equipo').addEventListener('click', async () => {
+  try {
+    const [casos, prof, vol, apad] = await Promise.all([
+      traerTodo('casos', { estado: 'pendiente' }),
+      traerTodo('profesionales', { estado: 'pendiente' }),
+      traerTodo('voluntarios', { estado: 'pendiente' }),
+      traerTodo('apadrinamientos', {})
+    ]);
+    const texto = mensajeResumenEquipo({
+      casos: casos.length,
+      profesionales: prof.length,
+      voluntarios: vol.length,
+      apadrinamientos: apad.filter(a => a.estado === 'propuesto').length
+    });
+    window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+  } catch (e) {
+    aviso('No fue posible armar el resumen: ' + e.message, 'error');
+  }
+});
 
 refrescarAcceso();

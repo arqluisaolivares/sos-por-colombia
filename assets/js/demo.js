@@ -15,7 +15,7 @@ export const CASOS_DEMO = [
     personas_hogar: 5, ninos: 2, adultos_mayores: 1, personas_discapacidad: 0,
     estado_vivienda: 'inhabitable', tenencia: 'propia', urgencia: 'alta',
     necesidades: ['evaluacion', 'planos', 'albergue', 'enseres'],
-    fotos: [], nombre_publico: 'Marleny', estado: 'aprobado',
+    fotos: [], nombre_contacto: 'Marleny Ospina', telefono: '3105550101', nombre_publico: 'Marleny', estado: 'aprobado',
     padrinos: [
       { nombre: 'Arq. Camilo Restrepo', perfil: 'profesional', profesion: 'arquitectura',
         tipo_ayuda: ['evaluacion', 'planos'],
@@ -31,7 +31,7 @@ export const CASOS_DEMO = [
     personas_hogar: 14, ninos: 7, adultos_mayores: 2, personas_discapacidad: 1,
     estado_vivienda: 'averiada', tenencia: 'propia', urgencia: 'alta',
     necesidades: ['agua', 'alimentos', 'materiales', 'mano_obra'],
-    fotos: [], nombre_publico: 'Yesid', estado: 'aprobado', padrinos: []
+    fotos: [], nombre_contacto: 'Yesid Palacios', telefono: '3115550102', nombre_publico: 'Yesid', estado: 'aprobado', padrinos: []
   },
   {
     id: 'demo-3', codigo: 'SOS-1003', creado_en: '2026-08-15T16:40:00Z',
@@ -41,7 +41,7 @@ export const CASOS_DEMO = [
     personas_hogar: 5, ninos: 1, adultos_mayores: 0, personas_discapacidad: 0,
     estado_vivienda: 'averiada', tenencia: 'propia', urgencia: 'media',
     necesidades: ['mano_obra', 'evaluacion', 'materiales'],
-    fotos: [], nombre_publico: 'Dora', estado: 'aprobado',
+    fotos: [], nombre_contacto: 'Dora Cardona', telefono: '3125550103', nombre_publico: 'Dora', estado: 'aprobado',
     padrinos: [
       { nombre: 'Ing. Paula Grisales', perfil: 'profesional', profesion: 'ingenieria_civil',
         tipo_ayuda: ['evaluacion'],
@@ -57,17 +57,17 @@ export const CASOS_DEMO = [
     personas_hogar: 1, ninos: 0, adultos_mayores: 1, personas_discapacidad: 0,
     estado_vivienda: 'en_riesgo', tenencia: 'propia', urgencia: 'alta',
     necesidades: ['evaluacion', 'psicologico', 'albergue'],
-    fotos: [], nombre_publico: 'Adriana', estado: 'aprobado', padrinos: []
+    fotos: [], nombre_contacto: 'Adriana Bonilla', telefono: '3135550104', nombre_publico: 'Adriana', estado: 'aprobado', padrinos: []
   },
   {
     id: 'demo-5', codigo: 'SOS-1005', creado_en: '2026-08-12T08:00:00Z',
     titulo: 'Escuela veredal sin techo: 60 niños sin clases',
     historia: 'La única escuela de la vereda perdió la cubierta y dos salones. Sesenta niños llevan una semana sin clase. La comunidad puede poner la mano de obra, pero no tenemos ni el diseño ni los materiales de la cubierta.',
     departamento: 'Chocó', municipio: 'San José del Palmar', barrio: 'Vereda La Italia',
-    personas_hogar: 0, ninos: 60, adultos_mayores: 0, personas_discapacidad: 2,
+    personas_hogar: 0, ninos: 0, adultos_mayores: 0, personas_discapacidad: 0,
     estado_vivienda: 'averiada', tenencia: 'posesion', urgencia: 'media',
     necesidades: ['materiales', 'planos', 'escolar', 'mano_obra'],
-    fotos: [], nombre_publico: 'Comunidad', estado: 'resuelto',
+    fotos: [], nombre_contacto: 'Junta de Acción Comunal', telefono: '3145550105', nombre_publico: 'Comunidad', estado: 'resuelto',
     padrinos: [
       { nombre: 'Fundación Profesionales Amigos', perfil: 'organizacion', profesion: null,
         tipo_ayuda: ['planos', 'materiales'],
@@ -83,7 +83,7 @@ export const CASOS_DEMO = [
     personas_hogar: 4, ninos: 1, adultos_mayores: 1, personas_discapacidad: 0,
     estado_vivienda: 'inhabitable', tenencia: 'arriendo', urgencia: 'alta',
     necesidades: ['albergue', 'enseres', 'salud', 'alimentos'],
-    fotos: [], nombre_publico: 'Sandra', estado: 'aprobado', padrinos: []
+    fotos: [], nombre_contacto: 'Sandra Ramírez', telefono: '3155550106', nombre_publico: 'Sandra', estado: 'aprobado', padrinos: []
   }
 ];
 

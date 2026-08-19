@@ -4,6 +4,7 @@
 
 import { CONFIG, MODO_DEMO } from './config.js';
 import { icono } from './iconos.js';
+import { esWhatsApp } from './whatsapp.js';
 
 /* ---------- Ayudas básicas ---------- */
 export const $  = (sel, raiz = document) => raiz.querySelector(sel);
@@ -84,7 +85,8 @@ const PAGINAS = [
   { href: 'casos.html',         texto: 'Familias' },
   { href: 'profesionales.html', texto: 'Profesionales' },
   { href: 'voluntarios.html',   texto: 'Voluntarios' },
-  { href: 'ayuda.html',         texto: 'Dónde hay ayuda' }
+  { href: 'ayuda.html',         texto: 'Dónde hay ayuda' },
+  { href: 'tablero.html',       texto: 'Tablero' }
 ];
 
 export function montarEncabezado() {
@@ -147,6 +149,7 @@ export function montarPie() {
             <li><a href="profesionales.html#inscribirme">Inscribirme como profesional</a></li>
             <li><a href="voluntarios.html#inscribirme">Inscribirme como voluntario</a></li>
             <li><a href="casos.html">Apadrinar una familia</a></li>
+            <li><a href="tablero.html">Tablero de resultados</a></li>
           </ul>
         </div>
         <div>
@@ -238,6 +241,9 @@ export function validar(form, reglas = {}) {
       ok = false; primero = primero || campo;
     } else if (campo.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(campo.value.trim())) {
       marcarError(campo, 'Escriba un correo válido');
+      ok = false; primero = primero || campo;
+    } else if (campo.dataset.whatsapp !== undefined && !esWhatsApp(campo.value)) {
+      marcarError(campo, 'Escriba un celular con WhatsApp: 10 dígitos que empiezan por 3');
       ok = false; primero = primero || campo;
     }
   });

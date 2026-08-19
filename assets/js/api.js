@@ -310,3 +310,76 @@ export async function eliminar(tabla, id) {
   });
   return true;
 }
+
+/* ------------------------------------------------------------------ */
+/* Tablero público                                                     */
+/* ------------------------------------------------------------------ */
+
+export async function traerTablero() {
+  if (MODO_DEMO) {
+    await esperar(220);
+    const publicos = CASOS_DEMO.filter(c => ['aprobado', 'resuelto'].includes(c.estado));
+
+    const avance = {
+      sin_padrino: publicos.filter(c => c.estado === 'aprobado' && !(c.padrinos || []).length).length,
+      apadrinados: publicos.filter(c => c.estado === 'aprobado' && (c.padrinos || []).length).length,
+      resueltos:   publicos.filter(c => c.estado === 'resuelto').length,
+      personas:    publicos.reduce((s, c) => s + (c.personas_hogar || 0), 0),
+      ninos:       publicos.reduce((s, c) => s + (c.ninos || 0), 0)
+    };
+
+    const porDepto = {};
+    publicos.forEach(c => {
+      const d = porDepto[c.departamento] || (porDepto[c.departamento] =
+        { departamento: c.departamento, casos: 0, resueltos: 0, personas: 0, ninos: 0 });
+      d.casos++;
+      if (c.estado === 'resuelto') d.resueltos++;
+      d.personas += c.personas_hogar || 0;
+      d.ninos += c.ninos || 0;
+    });
+
+    const porNecesidad = {};
+    publicos.forEach(c => (c.necesidades || []).forEach(n => {
+      porNecesidad[n] = (porNecesidad[n] || 0) + 1;
+    }));
+
+    return {
+      avance,
+      departamentos: Object.values(porDepto).sort((a, b) => b.casos - a.casos),
+      necesidades: Object.entries(porNecesidad)
+        .map(([necesidad, casos]) => ({ necesidad, casos }))
+        .sort((a, b) => b.casos - a.casos),
+      estadisticas: ESTADISTICAS_DEMO
+    };
+  }
+
+  const [avance, departamentos, necesidades, estadisticas] = await Promise.all([
+    pedir(`${REST()}/v_tablero_avance?select=*&limit=1`, { headers: encabezados() }),
+    pedir(`${REST()}/v_tablero_departamentos?select=*`, { headers: encabezados() }),
+    pedir(`${REST()}/v_tablero_necesidades?select=*`, { headers: encabezados() }),
+    traerEstadisticas()
+  ]);
+
+  return {
+    avance: (avance && avance[0]) || { sin_padrino: 0, apadrinados: 0, resueltos: 0, personas: 0, ninos: 0 },
+    departamentos: departamentos || [],
+    necesidades: necesidades || [],
+    estadisticas
+  };
+}
+
+/** Deja constancia de que ya se avisó por WhatsApp. */
+export async function marcarAvisado(tabla, id, campo = 'avisado_en') {
+  if (MODO_DEMO) { await esperar(200); return true; }
+  try {
+    await pedir(`${REST()}/${tabla}?id=eq.${id}`, {
+      method: 'PATCH',
+      headers: encabezados({ Prefer: 'return=minimal' }),
+      body: JSON.stringify({ [campo]: new Date().toISOString() })
+    });
+    return true;
+  } catch {
+    // La columna solo existe si ya se ejecutó 03_avisos_whatsapp.sql.
+    return false;
+  }
+}
