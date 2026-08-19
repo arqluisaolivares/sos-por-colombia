@@ -1,7 +1,7 @@
 /* SOS por Colombia · Directorio e inscripción de voluntarios */
 
 import {
-  montarBase, $, esc, vacio, cargando, aviso, modal, casillas, opcionesSelect,
+  montarBase, $, $$, esc, vacio, cargando, aviso, modal, casillas, opcionesSelect,
   leerFormulario, validar, ocupar
 } from './ui.js';
 import { traerVoluntarios, registrarVoluntario } from './api.js';
@@ -10,6 +10,25 @@ import { DEPARTAMENTOS, DEPARTAMENTOS_AFECTADOS, HABILIDADES, DISPONIBILIDADES }
 import { MODO_DEMO } from './config.js';
 
 montarBase();
+
+/* ---------------- Pestañas ---------------- */
+const paneles = ['panel-directorio', 'panel-inscripcion'];
+
+function abrirPestana(id) {
+  paneles.forEach(p => $('#' + p).classList.toggle('oculto', p !== id));
+  $$('.pestana').forEach(b => {
+    const activa = b.dataset.panel === id;
+    b.classList.toggle('pestana--activa', activa);
+    b.setAttribute('aria-selected', String(activa));
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+$$('.pestana').forEach(b => b.addEventListener('click', () => abrirPestana(b.dataset.panel)));
+if (location.hash === '#inscribirme') abrirPestana('panel-inscripcion');
+window.addEventListener('hashchange', () => {
+  if (location.hash === '#inscribirme') abrirPestana('panel-inscripcion');
+});
 
 /* ---------------- Directorio ---------------- */
 const lista = $('#lista');
@@ -40,6 +59,8 @@ function pintar() {
   });
 
   conteo.textContent = r.length === 1 ? '1 voluntario disponible' : `${r.length} voluntarios disponibles`;
+  const cuenta = $('#cuenta-inscritos');
+  if (cuenta) cuenta.textContent = TODOS.length;
   lista.innerHTML = r.length
     ? r.map(tarjetaVoluntario).join('')
     : vacio('Todavía no hay voluntarios con ese perfil', 'Inscríbase más abajo: cualquier oficio sirve.', '🤝');

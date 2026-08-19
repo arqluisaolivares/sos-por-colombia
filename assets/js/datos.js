@@ -41,19 +41,91 @@ export const PROFESIONES = [
 ];
 
 export const SERVICIOS = [
-  { id: 'evaluacion_estructural', nombre: 'Evaluación de daños en la vivienda' },
-  { id: 'planos',                 nombre: 'Planos y diseño de vivienda' },
-  { id: 'licencias',              nombre: 'Trámites y licencias de construcción' },
-  { id: 'presupuesto',            nombre: 'Presupuesto y cantidades de obra' },
-  { id: 'direccion_obra',         nombre: 'Dirección técnica de obra' },
-  { id: 'reforzamiento',          nombre: 'Reforzamiento estructural' },
-  { id: 'redes',                  nombre: 'Redes eléctricas e hidrosanitarias' },
-  { id: 'salud',                  nombre: 'Atención en salud' },
-  { id: 'apoyo_psicologico',      nombre: 'Apoyo psicológico' },
+  /* --- Vivienda y obra --- */
+  { id: 'evaluacion_estructural', nombre: 'Evaluar los daños de la vivienda' },
+  { id: 'concepto_habitabilidad', nombre: 'Decir si la casa se puede habitar' },
+  { id: 'planos',                 nombre: 'Hacer los planos de la vivienda' },
+  { id: 'diseno_participativo',   nombre: 'Diseñar junto con la familia' },
+  { id: 'reforzamiento',          nombre: 'Diseñar el reforzamiento estructural' },
+  { id: 'licencias',              nombre: 'Tramitar licencias y curaduría' },
+  { id: 'presupuesto',            nombre: 'Hacer el presupuesto y las cantidades' },
+  { id: 'direccion_obra',         nombre: 'Dirigir técnicamente la obra' },
+  { id: 'interventoria',          nombre: 'Hacer interventoría' },
+  { id: 'mano_obra_calificada',   nombre: 'Poner mano de obra calificada' },
+  { id: 'demolicion_segura',      nombre: 'Orientar demoliciones seguras' },
+
+  /* --- Terreno y redes --- */
+  { id: 'estudio_suelos',         nombre: 'Estudio de suelos' },
+  { id: 'riesgo_ladera',          nombre: 'Evaluar riesgo de deslizamiento' },
+  { id: 'levantamiento',          nombre: 'Levantamiento topográfico' },
+  { id: 'replanteo',              nombre: 'Replanteo en terreno' },
+  { id: 'linderos',               nombre: 'Aclarar linderos y áreas' },
+  { id: 'redes_electricas',       nombre: 'Revisar y normalizar redes eléctricas' },
+  { id: 'redes_hidraulicas',      nombre: 'Redes de agua y alcantarillado' },
+  { id: 'agua_segura',            nombre: 'Agua potable y saneamiento' },
+
+  /* --- Salud y acompañamiento --- */
+  { id: 'salud',                  nombre: 'Consulta médica o de enfermería' },
+  { id: 'brigadas_salud',         nombre: 'Brigadas de salud en terreno' },
+  { id: 'apoyo_psicologico',      nombre: 'Apoyo psicológico individual' },
+  { id: 'psicosocial_ninos',      nombre: 'Acompañamiento a niñas y niños' },
+  { id: 'duelo',                  nombre: 'Acompañamiento en duelo' },
+  { id: 'caracterizacion',        nombre: 'Caracterizar familias y necesidades' },
+  { id: 'acompanamiento_familiar',nombre: 'Acompañamiento familiar continuo' },
+  { id: 'veterinaria',            nombre: 'Atención de animales y mascotas' },
+
+  /* --- Trámites y recursos --- */
   { id: 'asesoria_juridica',      nombre: 'Asesoría jurídica' },
-  { id: 'gestion_subsidios',      nombre: 'Gestión de subsidios y ayudas del Estado' },
-  { id: 'formacion',              nombre: 'Formación y acompañamiento a la comunidad' }
+  { id: 'gestion_subsidios',      nombre: 'Gestionar subsidios del Estado' },
+  { id: 'titulacion',             nombre: 'Titulación y escrituras' },
+  { id: 'seguros',                nombre: 'Reclamaciones ante aseguradoras' },
+  { id: 'contabilidad_donaciones',nombre: 'Contabilidad de donaciones' },
+  { id: 'tramites_tributarios',   nombre: 'Trámites tributarios de la Fundación' },
+
+  /* --- Educación, comunicación y logística --- */
+  { id: 'refuerzo_escolar',       nombre: 'Refuerzo escolar' },
+  { id: 'espacios_ninos',         nombre: 'Espacios protectores para la niñez' },
+  { id: 'formacion',              nombre: 'Formar y capacitar a la comunidad' },
+  { id: 'comunicacion_campanas',  nombre: 'Comunicación y campañas' },
+  { id: 'diseno_piezas',          nombre: 'Diseño de piezas gráficas' },
+  { id: 'registro_fotografico',   nombre: 'Registro fotográfico y audiovisual' },
+  { id: 'logistica_donaciones',   nombre: 'Logística de donaciones' },
+  { id: 'transporte',             nombre: 'Transporte de materiales o personas' },
+  { id: 'bodega',                 nombre: 'Bodega y clasificación' },
+  { id: 'sistemas_datos',         nombre: 'Sistemas, datos y soporte técnico' },
+  { id: 'censo_digital',          nombre: 'Censo digital en campo' }
 ];
+
+/* Qué puede aportar cada profesión. Es una sugerencia, no una camisa de
+   fuerza: en el formulario siempre se puede abrir la lista completa. */
+export const SERVICIOS_POR_PROFESION = {
+  arquitectura: ['evaluacion_estructural','concepto_habitabilidad','planos','diseno_participativo',
+                 'licencias','presupuesto','direccion_obra','interventoria','formacion'],
+  ingenieria_civil: ['evaluacion_estructural','concepto_habitabilidad','reforzamiento','direccion_obra',
+                     'interventoria','presupuesto','demolicion_segura','estudio_suelos'],
+  ingenieria_electrica: ['redes_electricas','evaluacion_estructural','formacion','direccion_obra'],
+  ingenieria_sanitaria: ['redes_hidraulicas','agua_segura','presupuesto','direccion_obra'],
+  topografia: ['levantamiento','replanteo','linderos','riesgo_ladera'],
+  geotecnia: ['estudio_suelos','riesgo_ladera','evaluacion_estructural','concepto_habitabilidad'],
+  construccion: ['mano_obra_calificada','direccion_obra','presupuesto','demolicion_segura','formacion'],
+  medicina: ['salud','brigadas_salud','formacion'],
+  psicologia: ['apoyo_psicologico','psicosocial_ninos','duelo','formacion'],
+  trabajo_social: ['caracterizacion','acompanamiento_familiar','gestion_subsidios','espacios_ninos'],
+  derecho: ['asesoria_juridica','gestion_subsidios','titulacion','seguros'],
+  contaduria: ['contabilidad_donaciones','tramites_tributarios','presupuesto'],
+  veterinaria: ['veterinaria','brigadas_salud'],
+  educacion: ['refuerzo_escolar','espacios_ninos','psicosocial_ninos','formacion'],
+  comunicacion: ['comunicacion_campanas','diseno_piezas','registro_fotografico'],
+  logistica: ['logistica_donaciones','transporte','bodega','censo_digital'],
+  sistemas: ['sistemas_datos','censo_digital','comunicacion_campanas'],
+  otra: []
+};
+
+/** Servicios sugeridos para una profesión (vacío = mostrar todos). */
+export function serviciosDe(profesion) {
+  const ids = SERVICIOS_POR_PROFESION[profesion] || [];
+  return ids.map(id => SERVICIOS.find(s => s.id === id)).filter(Boolean);
+}
 
 export const HABILIDADES = [
   { id: 'mamposteria',   nombre: 'Pega de bloque / mampostería' },

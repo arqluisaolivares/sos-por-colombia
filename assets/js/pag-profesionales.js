@@ -1,17 +1,39 @@
 /* SOS por Colombia · Directorio e inscripción de profesionales */
 
 import {
-  montarBase, $, esc, vacio, cargando, aviso, modal, casillas, opcionesSelect,
+  montarBase, $, $$, esc, vacio, cargando, aviso, modal, casillas, opcionesSelect,
   leerFormulario, validar, ocupar
 } from './ui.js';
 import { traerProfesionales, registrarProfesional } from './api.js';
 import { tarjetaProfesional } from './componentes.js';
 import {
-  DEPARTAMENTOS, DEPARTAMENTOS_AFECTADOS, PROFESIONES, SERVICIOS, MODALIDADES, DISPONIBILIDADES
+  DEPARTAMENTOS, DEPARTAMENTOS_AFECTADOS, PROFESIONES, SERVICIOS, MODALIDADES,
+  DISPONIBILIDADES, serviciosDe
 } from './datos.js';
 import { MODO_DEMO } from './config.js';
 
 montarBase();
+
+/* ---------------- Pestañas ---------------- */
+const paneles = ['panel-directorio', 'panel-inscripcion'];
+
+function abrirPestana(id) {
+  paneles.forEach(p => $('#' + p).classList.toggle('oculto', p !== id));
+  $$('.pestana').forEach(b => {
+    const activa = b.dataset.panel === id;
+    b.classList.toggle('pestana--activa', activa);
+    b.setAttribute('aria-selected', String(activa));
+  });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+$$('.pestana').forEach(b => b.addEventListener('click', () => abrirPestana(b.dataset.panel)));
+
+/* Los enlaces #inscribirme de todo el sitio abren directamente el formulario */
+if (location.hash === '#inscribirme') abrirPestana('panel-inscripcion');
+window.addEventListener('hashchange', () => {
+  if (location.hash === '#inscribirme') abrirPestana('panel-inscripcion');
+});
 
 /* ---------------- Directorio ---------------- */
 const lista = $('#lista');
@@ -45,6 +67,8 @@ function pintar() {
   });
 
   conteo.textContent = r.length === 1 ? '1 profesional inscrito' : `${r.length} profesionales inscritos`;
+  const cuenta = $('#cuenta-inscritos');
+  if (cuenta) cuenta.textContent = TODOS.length;
   lista.innerHTML = r.length
     ? r.map(tarjetaProfesional).join('')
     : vacio('Todavía no hay profesionales con ese perfil',
@@ -61,13 +85,41 @@ $('#profesion').innerHTML       = opcionesSelect(PROFESIONES, '', 'Seleccione');
 $('#departamento').innerHTML    = opcionesSelect(DEPARTAMENTOS, '', 'Seleccione');
 $('#modalidad').innerHTML       = opcionesSelect(MODALIDADES, 'mixta', 'Seleccione');
 $('#disponibilidad').innerHTML  = opcionesSelect(DISPONIBILIDADES, '', 'Seleccione');
-$('#opc-servicios').innerHTML   = casillas('servicios', SERVICIOS);
+pintarServicios('');
 $('#opc-zonas').innerHTML       = casillas('zonas_atencion',
   DEPARTAMENTOS.map(d => ({ id: d, nombre: DEPARTAMENTOS_AFECTADOS.includes(d) ? `${d} ★` : d })));
 
 $('#profesion').addEventListener('change', e => {
   $('#campo-otra').classList.toggle('oculto', e.target.value !== 'otra');
+  pintarServicios(e.target.value);
 });
+
+$('#ver-todos-servicios').addEventListener('click', () => pintarServicios('', true));
+
+/**
+ * Muestra las formas de ayudar que corresponden a la profesión escogida.
+ * Si no hay profesión, o si el usuario pide ver todas, muestra el catálogo completo.
+ */
+function pintarServicios(profesion, todas = false) {
+  const sugeridos = todas ? [] : serviciosDe(profesion);
+  const lista = sugeridos.length ? sugeridos : SERVICIOS;
+  const marcados = $$('#opc-servicios input:checked').map(i => i.value);
+
+  $('#opc-servicios').innerHTML = casillas('servicios', lista, marcados);
+
+  const ayuda = $('#ayuda-servicios');
+  const boton = $('#ver-todos-servicios');
+  if (sugeridos.length) {
+    const nombre = (PROFESIONES.find(p => p.id === profesion) || {}).nombre || '';
+    ayuda.textContent = `Formas de ayudar más frecuentes en ${nombre.toLowerCase()}. Marque las que pueda cumplir.`;
+    boton.classList.remove('oculto');
+  } else {
+    ayuda.textContent = profesion || todas
+      ? 'Todas las formas de ayudar. Marque las que pueda cumplir.'
+      : 'Escoja primero su profesión y le mostramos las formas de ayudar que corresponden.';
+    boton.classList.add('oculto');
+  }
+}
 
 const form = $('#form-profesional');
 form.addEventListener('submit', async (e) => {
