@@ -54,6 +54,31 @@ nadie reciba el mismo mensaje dos veces.
 > `assets/js/whatsapp.js` desde una Edge Function de Supabase y el resto del sitio no
 > cambia. Nunca se debe poner el token de Meta en el navegador: quedaría a la vista.
 
+
+---
+
+## Estado actual (ya está todo conectado)
+
+| Qué | Dónde |
+|---|---|
+| Sitio en vivo | https://arqluisaolivares.github.io/sos-por-colombia/ |
+| Repositorio | https://github.com/arqluisaolivares/sos-por-colombia |
+| Base de datos | Proyecto `sos-por-colombia` en Supabase (plan gratuito) |
+| Administradora | arqluisaolivares@gmail.com |
+
+Los cuatro archivos SQL ya se ejecutaron, el sitio ya salió del modo demostración y guarda de
+verdad. Los pasos que siguen abajo quedan como referencia, por si algún día hay que rehacer el
+montaje o llevarlo a otra cuenta.
+
+### Cómo entrar al panel
+
+1. Abra `https://arqluisaolivares.github.io/sos-por-colombia/admin.html`
+2. Escriba **arqluisaolivares@gmail.com** y pida el enlace de acceso.
+3. Abra el enlace que llega al correo. No hay contraseña.
+
+Para sumar otro moderador: invítelo en Supabase (*Authentication → Users → Send invitation*) e
+inserte su correo en la tabla `admins`.
+
 ---
 
 ## Puesta en marcha
