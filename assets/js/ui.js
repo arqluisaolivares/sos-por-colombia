@@ -3,6 +3,7 @@
    ===================================================================== */
 
 import { CONFIG, MODO_DEMO } from './config.js';
+import { icono } from './iconos.js';
 
 /* ---------- Ayudas básicas ---------- */
 export const $  = (sel, raiz = document) => raiz.querySelector(sel);
@@ -48,7 +49,7 @@ export function casillas(nombre, lista, seleccionados = []) {
   return lista.map(o => `
     <label class="opcion">
       <input type="checkbox" name="${esc(nombre)}" value="${esc(o.id)}"${seleccionados.includes(o.id) ? ' checked' : ''}>
-      <span>${o.icono ? o.icono + ' ' : ''}${esc(o.nombre)}</span>
+      <span>${o.svg ? icono(o.svg, 18, 1.8) : ''}${esc(o.nombre)}</span>
     </label>`).join('');
 }
 
@@ -83,7 +84,7 @@ const PAGINAS = [
   { href: 'casos.html',         texto: 'Familias' },
   { href: 'profesionales.html', texto: 'Profesionales' },
   { href: 'voluntarios.html',   texto: 'Voluntarios' },
-  { href: 'ayuda.html',         texto: '¿Dónde consigo ayuda?' }
+  { href: 'ayuda.html',         texto: 'Dónde hay ayuda' }
 ];
 
 export function montarEncabezado() {
