@@ -129,6 +129,27 @@ export function montarEncabezado() {
     const abierto = nav.classList.toggle('abierto');
     boton.setAttribute('aria-expanded', String(abierto));
   });
+
+  medirBarras();
+}
+
+/**
+ * Mide lo que ocupan la franja roja y el encabezado y lo publica como
+ * la variable CSS --barras. Así la portada puede terminar justo en el
+ * borde inferior de la ventana, sin importar el alto real de las barras.
+ */
+export function medirBarras() {
+  const calcular = () => {
+    const cab = document.querySelector('.encabezado');
+    if (!cab) return;
+    const alto = ['.franja-alerta', '.aviso-modo', '.encabezado']
+      .reduce((s, sel) => s + (document.querySelector(sel)?.offsetHeight || 0), 0);
+    document.documentElement.style.setProperty('--barras', alto + 'px');
+  };
+  calcular();
+  window.addEventListener('resize', calcular);
+  window.addEventListener('load', calcular);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(calcular);
 }
 
 export function montarPie() {
