@@ -114,9 +114,11 @@ export function montarEncabezado() {
     </div>
   </header>`;
 
-  const cont = document.createElement('div');
-  cont.innerHTML = html;
-  document.body.prepend(cont);
+  // Se insertan como hijos directos de <body> para que el encabezado
+  // pegajoso siga visible en toda la página (un <div> contenedor lo cortaría).
+  const plantilla = document.createElement('template');
+  plantilla.innerHTML = html.trim();
+  document.body.prepend(plantilla.content);
 
   const boton = $('.menu-boton');
   const nav = $('#nav-principal');

@@ -77,21 +77,21 @@ export const HABILIDADES = [
 ];
 
 export const NECESIDADES = [
-  { id: 'alimentos',    nombre: 'Alimentos',                icono: '🍲' },
-  { id: 'agua',         nombre: 'Agua potable',             icono: '💧' },
-  { id: 'albergue',     nombre: 'Techo temporal',           icono: '⛺' },
-  { id: 'materiales',   nombre: 'Materiales de construcción', icono: '🧱' },
-  { id: 'planos',       nombre: 'Planos y diseño',          icono: '📐' },
-  { id: 'evaluacion',   nombre: 'Evaluación estructural',   icono: '🏚️' },
-  { id: 'mano_obra',    nombre: 'Mano de obra',             icono: '🔨' },
-  { id: 'salud',        nombre: 'Atención médica',          icono: '⚕️' },
-  { id: 'psicologico',  nombre: 'Apoyo psicológico',        icono: '💙' },
-  { id: 'juridico',     nombre: 'Asesoría jurídica',        icono: '⚖️' },
-  { id: 'enseres',      nombre: 'Enseres y cocina',         icono: '🛏️' },
-  { id: 'ropa',         nombre: 'Ropa y cobijas',           icono: '🧥' },
-  { id: 'escolar',      nombre: 'Útiles escolares',         icono: '🎒' },
-  { id: 'mascotas',     nombre: 'Atención de mascotas',     icono: '🐕' },
-  { id: 'transporte',   nombre: 'Transporte',               icono: '🚚' }
+  { id: 'alimentos',    nombre: 'Alimentos',                icono: '🍲' , svg: 'olla' },
+  { id: 'agua',         nombre: 'Agua potable',             icono: '💧' , svg: 'gota' },
+  { id: 'albergue',     nombre: 'Techo temporal',           icono: '⛺' , svg: 'carpa' },
+  { id: 'materiales',   nombre: 'Materiales de construcción', icono: '🧱' , svg: 'ladrillos' },
+  { id: 'planos',       nombre: 'Planos y diseño',          icono: '📐' , svg: 'escuadra' },
+  { id: 'evaluacion',   nombre: 'Evaluación estructural',   icono: '🏚️' , svg: 'lupa-casa' },
+  { id: 'mano_obra',    nombre: 'Mano de obra',             icono: '🔨' , svg: 'herramienta' },
+  { id: 'salud',        nombre: 'Atención médica',          icono: '⚕️' , svg: 'salud' },
+  { id: 'psicologico',  nombre: 'Apoyo psicológico',        icono: '💙' , svg: 'corazon' },
+  { id: 'juridico',     nombre: 'Asesoría jurídica',        icono: '⚖️' , svg: 'balanza' },
+  { id: 'enseres',      nombre: 'Enseres y cocina',         icono: '🛏️' , svg: 'cama' },
+  { id: 'ropa',         nombre: 'Ropa y cobijas',           icono: '🧥' , svg: 'camiseta' },
+  { id: 'escolar',      nombre: 'Útiles escolares',         icono: '🎒' , svg: 'mochila' },
+  { id: 'mascotas',     nombre: 'Atención de mascotas',     icono: '🐕' , svg: 'huella' },
+  { id: 'transporte',   nombre: 'Transporte',               icono: '🚚', svg: 'camion' }
 ];
 
 export const ESTADOS_VIVIENDA = [
@@ -110,14 +110,14 @@ export const TENENCIAS = [
 ];
 
 export const TIPOS_PUNTO = [
-  { id: 'acopio',       nombre: 'Punto de acopio',            icono: '📦' },
-  { id: 'albergue',     nombre: 'Albergue temporal',          icono: '⛺' },
-  { id: 'alimentacion', nombre: 'Comedor / alimentación',     icono: '🍲' },
-  { id: 'agua',         nombre: 'Agua potable',               icono: '💧' },
-  { id: 'salud',        nombre: 'Atención en salud',          icono: '⚕️' },
-  { id: 'estructural',  nombre: 'Evaluación estructural',     icono: '🏗️' },
-  { id: 'juridica',     nombre: 'Orientación jurídica',       icono: '⚖️' },
-  { id: 'psicosocial',  nombre: 'Apoyo psicosocial',          icono: '💙' }
+  { id: 'acopio',       nombre: 'Punto de acopio',            icono: '📦' , svg: 'ubicacion' },
+  { id: 'albergue',     nombre: 'Albergue temporal',          icono: '⛺' , svg: 'carpa' },
+  { id: 'alimentacion', nombre: 'Comedor / alimentación',     icono: '🍲' , svg: 'olla' },
+  { id: 'agua',         nombre: 'Agua potable',               icono: '💧' , svg: 'gota' },
+  { id: 'salud',        nombre: 'Atención en salud',          icono: '⚕️' , svg: 'salud' },
+  { id: 'estructural',  nombre: 'Evaluación estructural',     icono: '🏗️' , svg: 'lupa-casa' },
+  { id: 'juridica',     nombre: 'Orientación jurídica',       icono: '⚖️' , svg: 'balanza' },
+  { id: 'psicosocial',  nombre: 'Apoyo psicosocial',          icono: '💙', svg: 'corazon' }
 ];
 
 export const MODALIDADES = [

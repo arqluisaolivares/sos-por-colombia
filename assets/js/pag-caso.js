@@ -7,6 +7,7 @@ import {
 import { traerCaso, verificarRegistro, proponerApadrinamiento } from './api.js';
 import { M_NECESIDADES, M_PROFESIONES, NECESIDADES, nombreDe } from './datos.js';
 import { estadoViviendaTexto } from './componentes.js';
+import { icono } from './iconos.js';
 import { MODO_DEMO } from './config.js';
 
 montarBase();
@@ -39,7 +40,7 @@ function pintar(c) {
 
   const necesidades = (c.necesidades || []).map(n => {
     const o = M_NECESIDADES[n];
-    return `<span class="pastilla">${o ? o.icono + ' ' + esc(o.nombre) : esc(n)}</span>`;
+    return `<span class="pastilla">${o ? icono(o.svg, 16, 1.8) + esc(o.nombre) : esc(n)}</span>`;
   }).join('');
 
   const galeria = fotos.length

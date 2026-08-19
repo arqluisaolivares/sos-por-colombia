@@ -6,6 +6,7 @@ import {
 } from './ui.js';
 import { traerPuntosAyuda, proponerPuntoAyuda } from './api.js';
 import { DEPARTAMENTOS, TIPOS_PUNTO, M_TIPOS_PUNTO } from './datos.js';
+import { icono } from './iconos.js';
 import { MODO_DEMO } from './config.js';
 
 montarBase();
@@ -30,7 +31,7 @@ function tarjetaPunto(p) {
   return `
   <article class="tarjeta">
     <div style="display:flex;gap:14px;align-items:flex-start">
-      <div class="icono-caja" style="margin:0;flex-shrink:0">${t.icono}</div>
+      <div class="icono-caja" style="margin:0;flex-shrink:0">${icono(t.svg, 24)}</div>
       <div style="flex:1;min-width:0">
         <span class="etq etq--neutra">${esc(t.nombre)}</span>
         <h3 style="margin:8px 0 3px">${esc(p.nombre)}</h3>

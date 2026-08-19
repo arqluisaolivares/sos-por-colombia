@@ -6,6 +6,7 @@ import { esc, haceCuanto } from './ui.js';
 import {
   M_NECESIDADES, M_PROFESIONES, M_HABILIDADES, M_SERVICIOS, M_VIVIENDA, nombreDe
 } from './datos.js';
+import { icono } from './iconos.js';
 
 const ETQ_URGENCIA = {
   alta:  '<span class="etq etq--alta">Urgencia alta</span>',
@@ -20,7 +21,7 @@ export function tarjetaCaso(c) {
 
   const necesidades = (c.necesidades || []).slice(0, 4).map(n => {
     const o = M_NECESIDADES[n];
-    return `<span class="pastilla">${o ? o.icono + ' ' + esc(o.nombre) : esc(n)}</span>`;
+    return `<span class="pastilla">${o ? icono(o.svg, 15, 1.8) + esc(o.nombre) : esc(n)}</span>`;
   }).join('');
   const restantes = (c.necesidades || []).length - 4;
 
@@ -33,7 +34,7 @@ export function tarjetaCaso(c) {
   return `
   <article class="tarjeta tarjeta--enlace caso">
     <div class="caso__foto${foto ? '' : ' caso__foto--vacia'}"${foto ? ` style="background-image:url('${esc(foto)}')"` : ''}>
-      ${foto ? '' : '🏚️'}
+      ${foto ? '' : icono('casa-danada', 44, 1.4)}
       <span class="caso__codigo">${esc(c.codigo || '')}</span>
       <span class="caso__urgencia">${resuelto ? '<span class="etq etq--ok">Resuelto</span>' : (ETQ_URGENCIA[c.urgencia] || '')}</span>
     </div>
@@ -87,7 +88,7 @@ export function tarjetaVoluntario(v) {
         <h3 style="margin-bottom:2px">${esc(v.nombre)}</h3>
         ${v.oficio ? `<div style="font-size:.84rem;color:var(--gold-600);font-weight:600">${esc(v.oficio)}</div>` : ''}
       </div>
-      ${v.tiene_vehiculo ? '<span class="etq etq--dorada">🚚 Con vehículo</span>' : ''}
+      ${v.tiene_vehiculo ? `<span class="etq etq--dorada">${icono('camion', 14, 1.9)} Con vehículo</span>` : ''}
     </div>
     <div style="font-size:.83rem;color:var(--ink-3);margin-bottom:12px">
       ${esc(v.ciudad || '')}${v.departamento ? ', ' + esc(v.departamento) : ''}
