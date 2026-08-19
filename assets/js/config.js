@@ -12,8 +12,8 @@
    ===================================================================== */
 
 export const CONFIG = {
-  SUPABASE_URL: '',            // ej. 'https://abcdefgh.supabase.co'
-  SUPABASE_ANON_KEY: '',       // la llave pública "anon"
+  SUPABASE_URL: 'https://byeihiypzdmuxqxfivcw.supabase.co',
+  SUPABASE_ANON_KEY: 'sb_publishable_fxVoUt1BYpuGQ__cSboxRA_sAHe9s0g',
 
   // ---- Identidad de la plataforma -----------------------------------
   ORGANIZACION: 'Fundación Profesionales Amigos',
