@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="52 52 536 424" role="img"
+     aria-labelledby="tituloIlustracion">
+  <title id="tituloIlustracion">Una casa que vuelve a levantarse: la grieta remendada, un profesional con sus planos y una familia frente a la puerta</title>
+
+  <defs>
+    <radialGradient id="resplandor" cx="50%" cy="46%" r="52%">
+      <stop offset="0%"   stop-color="#FDFBF7" stop-opacity=".16"/>
+      <stop offset="60%"  stop-color="#FDFBF7" stop-opacity=".05"/>
+      <stop offset="100%" stop-color="#FDFBF7" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="muro">
+      <path d="M212 246h216v198a8 8 0 0 1-8 8H220a8 8 0 0 1-8-8Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- Resplandor cálido detrás de la casa -->
+  <circle cx="320" cy="250" r="240" fill="url(#resplandor)"/>
+
+  <!-- Arco de cuidado -->
+  <path d="M104 286a216 216 0 0 1 432 0" fill="none" stroke="#F2C230" stroke-opacity=".45"
+        stroke-width="3" stroke-linecap="round" stroke-dasharray="1 18"/>
+
+  <!-- Aves -->
+  <g fill="none" stroke="#F2C230" stroke-width="3.2" stroke-linecap="round" stroke-opacity=".9">
+    <path d="M112 150c7-8 14-8 20 0 6-8 13-8 19 0"/>
+    <path d="M492 118c5-6 11-6 15 0 5-6 10-6 15 0"/>
+    <path d="M534 168c4-5 8-5 11 0 4-5 8-5 11 0"/>
+  </g>
+
+  <!-- Loma suave -->
+  <path d="M0 452c118-40 186-16 262-16s160-26 260-14c48 6 88 18 118 30v20H0Z"
+        fill="#123F96" fill-opacity=".55"/>
+
+  <!-- Andamio: la casa está en obra -->
+  <g stroke="#F2C230" stroke-opacity=".9" stroke-width="5" stroke-linecap="round" fill="none">
+    <path d="M186 236v216M166 268v184"/>
+    <path d="M162 300h28M162 356h28M162 412h28"/>
+  </g>
+
+  <!-- ===================== LA CASA ===================== -->
+  <path d="M212 246h216v198a8 8 0 0 1-8 8H220a8 8 0 0 1-8-8Z" fill="#FDFBF7"/>
+
+  <!-- Grieta remendada -->
+  <g clip-path="url(#muro)">
+    <path d="M386 246l-20 44 24 22-18 42 12 34" fill="none" stroke="#E4DFD4"
+          stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <g stroke="#F2C230" stroke-width="5" stroke-linecap="round">
+      <path d="M362 266h30M356 306h32M360 348h32M366 390h28"/>
+    </g>
+  </g>
+
+  <!-- Tejado -->
+  <path d="M320 152 452 250a8 8 0 0 1-5 14H193a8 8 0 0 1-5-14Z" fill="#F2C230"/>
+  <path d="M320 152 452 250a8 8 0 0 1-5 14h-22L320 186Z" fill="#D9A711"/>
+
+  <!-- Puerta -->
+  <path d="M296 356h48v96h-48Z" fill="#0B2E6F"/>
+  <circle cx="333" cy="406" r="4.5" fill="#F2C230"/>
+
+  <!-- Ventana encendida -->
+  <rect x="238" y="288" width="76" height="58" rx="7" fill="#0B2E6F"/>
+  <rect x="246" y="296" width="60" height="42" rx="3" fill="#F7DC8C"/>
+  <path d="M276 296v42M246 317h60" stroke="#0B2E6F" stroke-width="5"/>
+
+  <!-- Base con la franja tricolor -->
+  <g>
+    <rect x="204" y="440" width="232" height="12" rx="6" fill="#F2C230"/>
+    <rect x="281" y="440" width="78" height="12" fill="#123F96"/>
+    <rect x="359" y="440" width="77" height="12" fill="#C8102E"/>
+    <path d="M204 446h232" stroke="none"/>
+  </g>
+
+  <!-- ===================== LA GENTE ===================== -->
+  <!-- Profesional con el plano bajo el brazo -->
+  <g transform="translate(18,0)">
+    <rect x="88" y="368" width="50" height="84" rx="25" fill="#3A67B4"/>
+    <circle cx="113" cy="348" r="21" fill="#FDFBF7"/>
+    <path d="M92 346a21 21 0 0 1 42 0Z" fill="#0B2E6F"/>
+    <rect x="60" y="384" width="58" height="15" rx="7.5" fill="#F2C230" transform="rotate(-12 89 391)"/>
+    <path d="M66 388h44" stroke="#0B2E6F" stroke-width="2.5" transform="rotate(-12 89 391)"/>
+  </g>
+
+  <!-- Madre y niña frente a la puerta -->
+  <g>
+    <rect x="488" y="364" width="52" height="88" rx="26" fill="#C8102E"/>
+    <circle cx="514" cy="344" r="22" fill="#FDFBF7"/>
+    <path d="M492 342a22 22 0 0 1 44 0Z" fill="#7C1020"/>
+    <rect x="548" y="402" width="32" height="50" rx="16" fill="#F2C230"/>
+    <circle cx="564" cy="388" r="14" fill="#FDFBF7"/>
+    <path d="M550 386a14 14 0 0 1 28 0Z" fill="#8A6A05"/>
+    <path d="M539 416h11" stroke="#FDFBF7" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- Suelo -->
+  <path d="M40 458h560" stroke="#FDFBF7" stroke-opacity=".28" stroke-width="4" stroke-linecap="round"/>
+</svg>
