@@ -694,3 +694,48 @@ html.pantallas{scroll-snap-type:y mandatory}
 .boton--whatsapp{background:#128C7E;color:#fff}
 .boton--whatsapp:hover{background:#0E6F63;color:#fff}
 .aviso-enviado{font-size:.76rem;color:var(--green);font-weight:600;display:block;margin-top:4px}
+
+/* =====================================================================
+   PORTADA CON ILUSTRACIÓN
+   ===================================================================== */
+.portada__rejilla{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+  gap:44px;align-items:center;
+}
+.portada__columna h1{margin-bottom:.35em}
+.portada__ilustracion img{width:100%;height:auto;max-height:min(52vh,440px);object-fit:contain}
+
+@media (max-width:900px){
+  .portada__rejilla{grid-template-columns:1fr;gap:22px;text-align:center}
+  .portada__columna{order:2}
+  .portada__ilustracion{order:1}
+  .portada__ilustracion img{max-height:min(30vh,240px);margin-inline:auto}
+  .portada__texto{margin-inline:auto}
+  .portada__acciones{justify-content:center}
+}
+@media (max-height:660px) and (min-width:901px){
+  .portada__ilustracion img{max-height:44vh}
+}
+
+/* =====================================================================
+   PESTAÑAS DE SECCIÓN
+   ===================================================================== */
+.pestanas{background:#fff;border-bottom:2px solid var(--line);position:sticky;top:var(--nav);z-index:40}
+.pestanas__fila{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.pestanas__fila::-webkit-scrollbar{display:none}
+.pestana{
+  appearance:none;background:none;border:none;border-bottom:3px solid transparent;
+  font-family:var(--font);font-size:.98rem;font-weight:600;color:var(--ink-3);
+  padding:16px 18px;cursor:pointer;white-space:nowrap;transition:.15s;
+  display:inline-flex;align-items:center;gap:9px;
+}
+.pestana:hover{color:var(--navy)}
+.pestana--activa{color:var(--navy);border-bottom-color:var(--gold)}
+.pestana__cuenta{
+  background:#EEF2FA;color:var(--navy);border-radius:999px;padding:2px 10px;
+  font-size:.8rem;font-weight:700;
+}
+.pestana--activa .pestana__cuenta{background:var(--gold);color:var(--navy-900)}
+@media (max-width:640px){ .pestana{padding:14px 12px;font-size:.9rem} }
+
+@media (max-width:640px){ .pantalla .caso__foto{height:98px} #p5 .pista{margin-top:0;font-size:.78rem} }
