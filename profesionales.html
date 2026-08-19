@@ -25,8 +25,20 @@
     </div>
   </section>
 
+  <!-- PESTAÑAS -->
+  <div class="pestanas">
+    <div class="contenedor pestanas__fila">
+      <button type="button" class="pestana pestana--activa" data-panel="panel-directorio">
+        Profesionales inscritos <span class="pestana__cuenta" id="cuenta-inscritos">—</span>
+      </button>
+      <button type="button" class="pestana" data-panel="panel-inscripcion">
+        Quiero inscribirme
+      </button>
+    </div>
+  </div>
+
   <!-- DIRECTORIO -->
-  <section class="seccion seccion--ajustada">
+  <section class="seccion seccion--ajustada" id="panel-directorio">
     <div class="contenedor">
       <h2>Directorio</h2>
       <form class="filtros" id="filtros">
@@ -58,7 +70,8 @@
   </section>
 
   <!-- INSCRIPCIÓN -->
-  <section class="seccion" id="inscribirme" style="background:#fff;border-top:1px solid var(--line)">
+  <section class="seccion oculto" id="panel-inscripcion" style="background:#fff;border-top:1px solid var(--line)">
+    <span id="inscribirme"></span>
     <div class="contenedor" style="max-width:820px">
       <h2>Inscripción de profesionales</h2>
       <p style="color:var(--ink-2)">
@@ -128,7 +141,10 @@
 
         <div class="campo">
           <label>¿Qué puede aportar? <span style="color:var(--red)">*</span></label>
+          <span class="ayuda" id="ayuda-servicios">Escoja primero su profesión y le mostramos las formas de ayudar que corresponden.</span>
           <div class="opciones" id="opc-servicios"></div>
+          <button type="button" class="boton boton--linea boton--pequeno oculto" id="ver-todos-servicios"
+                  style="align-self:flex-start;margin-top:6px">Ver todas las formas de ayudar</button>
         </div>
 
         <div class="campos-fila">

@@ -25,7 +25,18 @@
     </div>
   </section>
 
-  <section class="seccion seccion--ajustada">
+  <div class="pestanas">
+    <div class="contenedor pestanas__fila">
+      <button type="button" class="pestana pestana--activa" data-panel="panel-directorio">
+        Voluntarios inscritos <span class="pestana__cuenta" id="cuenta-inscritos">—</span>
+      </button>
+      <button type="button" class="pestana" data-panel="panel-inscripcion">
+        Quiero inscribirme
+      </button>
+    </div>
+  </div>
+
+  <section class="seccion seccion--ajustada" id="panel-directorio">
     <div class="contenedor">
       <h2>Quiénes están disponibles</h2>
       <form class="filtros" id="filtros">
@@ -52,7 +63,8 @@
     </div>
   </section>
 
-  <section class="seccion" id="inscribirme" style="background:#fff;border-top:1px solid var(--line)">
+  <section class="seccion oculto" id="panel-inscripcion" style="background:#fff;border-top:1px solid var(--line)">
+    <span id="inscribirme"></span>
     <div class="contenedor" style="max-width:820px">
       <h2>Inscripción de voluntarios</h2>
       <p style="color:var(--ink-2)">Sus datos de contacto no se publican. Solo los ve el equipo de coordinación.</p>
