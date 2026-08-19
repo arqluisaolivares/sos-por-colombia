@@ -768,3 +768,16 @@ html.pantallas{scroll-snap-type:y mandatory}
 
 /* El contenido nunca queda inalcanzable debajo del encabezado */
 .pantalla{align-content:safe center}
+
+/* Ventanas de navegador muy bajas: la portada entra completa sin scroll */
+@media (max-height:700px) and (min-width:901px){
+  .pantalla{padding:26px 0 28px}
+  .portada__etiqueta{margin-bottom:12px}
+  .portada h1{font-size:clamp(1.5rem,2.5vw,2rem);margin-bottom:.3em}
+  .portada__texto{font-size:.97rem;margin-bottom:.4em}
+  .portada__acciones{flex-wrap:nowrap;margin-top:16px;gap:10px}
+  .portada__acciones .boton--grande{
+    min-height:52px;padding:14px 18px;font-size:.97rem;white-space:nowrap;
+  }
+  .portada__ilustracion img{max-height:38vh}
+}
