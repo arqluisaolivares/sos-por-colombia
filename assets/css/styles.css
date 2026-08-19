@@ -142,7 +142,7 @@ p{margin:0 0 1em}
   color:#fff;padding:64px 0 72px;position:relative;overflow:hidden;
 }
 .portada::after{
-  content:'';position:absolute;inset:auto 0 0 0;height:5px;
+  content:'';position:absolute;inset:auto 0 0 0;height:10px;
   background:linear-gradient(90deg,var(--gold) 0 33%, #003893 33% 66%, var(--red) 66% 100%);
 }
 .portada h1{color:#fff;margin-bottom:.35em}
@@ -703,7 +703,7 @@ html.pantallas{scroll-snap-type:y mandatory}
   gap:44px;align-items:center;
 }
 .portada__columna h1{margin-bottom:.35em}
-.portada__ilustracion img{width:100%;height:auto;max-height:min(52vh,440px);object-fit:contain}
+.portada__ilustracion img{width:100%;height:auto;max-height:min(58vh,500px);object-fit:contain}
 
 @media (max-width:900px){
   .portada__rejilla{grid-template-columns:1fr;gap:22px;text-align:center}
@@ -746,7 +746,7 @@ html.pantallas{scroll-snap-type:y mandatory}
    contenido entre completo y que nada quede debajo del encabezado.
    ===================================================================== */
 @media (min-width:901px){
-  .portada__rejilla{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:36px}
+  .portada__rejilla{grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:34px}
   .portada__acciones .boton--grande{padding:17px 24px;font-size:1.04rem}
 }
 
@@ -779,5 +779,22 @@ html.pantallas{scroll-snap-type:y mandatory}
   .portada__acciones .boton--grande{
     min-height:52px;padding:14px 18px;font-size:.97rem;white-space:nowrap;
   }
-  .portada__ilustracion img{max-height:38vh}
+
+  .portada.pantalla{padding-bottom:38px}
+  .portada__ilustracion img{max-height:min(56vh,300px)}
 }
+
+/* La franja azul de la portada termina justo en el borde de la ventana.
+   Con enganche de scroll el tope de la pantalla queda en scroll-padding-top;
+   sin enganche queda debajo de las barras (medidas en ui.js como --barras). */
+.portada.pantalla{min-height:calc(100svh - var(--nav) - 12px)}
+@media (max-height:660px){
+  .portada.pantalla{min-height:calc(100svh - var(--barras, 111px))}
+}
+@media (max-width:900px){
+  .portada.pantalla{padding-top:24px;padding-bottom:62px}
+  .portada__ilustracion img{max-height:min(26vh,210px)}
+}
+
+/* La bandera se ve un poco más ancha en pantallas pequeñas también */
+@media (max-width:640px){ .portada::after{height:8px} }
