@@ -9,9 +9,9 @@ import {
 import {
   abrir as abrirWhatsApp, esWhatsApp, mostrar as mostrarTelefono,
   mensajeFamiliaApadrinada, mensajeProfesional, mensajeCasoAprobado,
-  mensajeInscripcionAprobada, mensajeResumenEquipo
+  mensajeInscripcionAprobada, mensajeResumenEquipo, mensajeInvitacion
 } from './whatsapp.js';
-import { M_PROFESIONES, M_NECESIDADES, M_HABILIDADES, M_TIPOS_PUNTO, nombreDe } from './datos.js';
+import { M_PROFESIONES, M_NECESIDADES, M_HABILIDADES, M_TIPOS_PUNTO, M_SERVICIOS, nombreDe } from './datos.js';
 import { MODO_DEMO } from './config.js';
 
 montarBase();
@@ -37,6 +37,7 @@ function refrescarAcceso() {
   panel.classList.toggle('oculto', !dentro);
   $('#salir').classList.toggle('oculto', !dentro);
   $('#resumen-equipo').classList.toggle('oculto', !dentro);
+  $('#exportar').classList.toggle('oculto', !dentro);
   const s = sesion.leer();
   $('#quien').textContent = MODO_DEMO
     ? 'Modo demostración · los cambios no se guardan'
@@ -147,8 +148,9 @@ function botonesWhatsApp(r) {
     return bf + bp;
   }
   if (TABLA === 'casos') {
-    return esWhatsApp(r.telefono)
-      ? `<button class="boton boton--whatsapp boton--pequeno" data-wa="caso" data-id="${esc(r.id)}">Avisar familia</button>` : '';
+    return (esWhatsApp(r.telefono)
+      ? `<button class="boton boton--whatsapp boton--pequeno" data-wa="caso" data-id="${esc(r.id)}">Avisar familia</button>` : '')
+      + `<button class="boton boton--dorado boton--pequeno" data-buscar="${esc(r.id)}">Buscar profesional</button>`;
   }
   if (TABLA === 'profesionales' || TABLA === 'voluntarios') {
     return esWhatsApp(r.telefono)
@@ -272,6 +274,11 @@ function conectarAcciones() {
     }
   }));
 
+  $$('[data-buscar]').forEach(b => b.addEventListener('click', () => {
+    const caso = JSON.parse(b.closest('tr').dataset.fila);
+    abrirBuscador(caso);
+  }));
+
   $$('[data-ver]').forEach(b => b.addEventListener('click', () => {
     const r = JSON.parse(b.closest('tr').dataset.fila);
     const filas = Object.entries(r)
@@ -281,6 +288,141 @@ function conectarAcciones() {
     modal(`<h2 style="font-size:1.2rem">Detalle del registro</h2><dl style="margin:0">${filas}</dl>`);
   }));
 }
+
+
+/* ---------------- Buscar un profesional para un caso ---------------- */
+async function abrirBuscador(caso) {
+  const { cerrar } = modal(`
+    <h2 style="font-size:1.25rem">Buscar profesional para ${esc(caso.codigo)}</h2>
+    <p style="font-size:.92rem;color:var(--ink-2)">${esc(caso.titulo)}</p>
+    <div class="pastillas" style="margin-bottom:16px">
+      ${(caso.necesidades || []).map(n => `<span class="pastilla">${esc(nombreDe(M_NECESIDADES, n))}</span>`).join('')}
+      <span class="pastilla">${esc(caso.departamento || '')}</span>
+    </div>
+    <div class="filtros" style="grid-template-columns:1fr auto;margin-bottom:16px">
+      <div class="campo">
+        <label for="bp-busqueda">Buscar por nombre o especialidad</label>
+        <input type="text" id="bp-busqueda" placeholder="arquitecto, estructural…">
+      </div>
+      <div class="campo">
+        <label class="opcion" style="min-height:auto;padding:12px 14px">
+          <input type="checkbox" id="bp-zona" checked>
+          <span>Solo los que atienden en ${esc(caso.departamento || 'esa zona')}</span>
+        </label>
+      </div>
+    </div>
+    <div id="bp-lista">${cargando('Buscando profesionales…')}</div>
+  `);
+
+  let TODOS = [];
+  try {
+    TODOS = (await traerTodo('profesionales', { estado: 'aprobado' })) || [];
+  } catch (e) {
+    $('#bp-lista').innerHTML = vacio('No fue posible cargar el directorio', e.message, '⚠️');
+    return;
+  }
+
+  const url = enlaceCaso(caso);
+
+  function pintarLista() {
+    const t = $('#bp-busqueda').value.trim().toLowerCase();
+    const soloZona = $('#bp-zona').checked;
+
+    let r = TODOS.slice();
+    if (soloZona && caso.departamento) {
+      r = r.filter(p => (p.zonas_atencion || []).includes(caso.departamento) ||
+                        p.departamento === caso.departamento);
+    }
+    if (t) {
+      r = r.filter(p => `${p.nombre} ${nombreDe(M_PROFESIONES, p.profesion, p.otra_profesion)} ${(p.servicios || []).map(x => nombreDe(M_SERVICIOS, x)).join(' ')} ${p.descripcion || ''}`
+        .toLowerCase().includes(t));
+    }
+
+    // Los que ya atienden algo parecido a lo que el caso pide van primero
+    const pedido = new Set(caso.necesidades || []);
+    const afin = (p) => (p.servicios || []).filter(sv =>
+      (sv === 'planos' && pedido.has('planos')) ||
+      (sv === 'evaluacion_estructural' && pedido.has('evaluacion')) ||
+      (sv === 'salud' && pedido.has('salud')) ||
+      (sv === 'apoyo_psicologico' && pedido.has('psicologico')) ||
+      (sv === 'asesoria_juridica' && pedido.has('juridico')) ||
+      (sv === 'direccion_obra' && pedido.has('mano_obra'))).length;
+    r.sort((a, b) => afin(b) - afin(a));
+
+    $('#bp-lista').innerHTML = r.length ? r.map(p => {
+      const puede = esWhatsApp(p.telefono);
+      return `
+      <div class="tarjeta" style="margin-bottom:10px;padding:16px">
+        <div style="display:flex;gap:12px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap">
+          <div style="flex:1;min-width:180px">
+            <strong>${esc(p.nombre)}</strong>${afin(p) ? ' <span class="etq etq--ok">Encaja</span>' : ''}
+            <div style="font-size:.85rem;color:var(--navy);font-weight:600">
+              ${esc(nombreDe(M_PROFESIONES, p.profesion, p.otra_profesion))}</div>
+            <div style="font-size:.82rem;color:var(--ink-3)">
+              ${esc(p.ciudad || '')} · ${esc(mostrarTelefono(p.telefono))}</div>
+          </div>
+          ${puede
+            ? `<button class="boton boton--whatsapp boton--pequeno"
+                 data-invitar='${esc(JSON.stringify({ nombre: p.nombre, telefono: p.telefono }))}'>Invitar</button>`
+            : '<span class="etq etq--neutra">Sin WhatsApp</span>'}
+        </div>
+      </div>`;
+    }).join('') : vacio('Ningún profesional coincide',
+        'Pruebe quitando el filtro de zona o inscribiendo más profesionales.', '📐');
+
+    $$('#bp-lista [data-invitar]').forEach(b => b.addEventListener('click', () => {
+      const p = JSON.parse(b.dataset.invitar);
+      if (abrirWhatsApp(p.telefono, mensajeInvitacion(caso, p, url))) {
+        b.textContent = 'Invitado ✓';
+        b.classList.remove('boton--whatsapp');
+        b.classList.add('boton--linea');
+      }
+    }));
+  }
+
+  $('#bp-busqueda').addEventListener('input', pintarLista);
+  $('#bp-zona').addEventListener('change', pintarLista);
+  pintarLista();
+}
+
+/* ---------------- Descargar a Excel ---------------- */
+function aCSV(filas) {
+  if (!filas.length) return '';
+  const columnas = [...new Set(filas.flatMap(f => Object.keys(f)))];
+  const celda = (v) => {
+    if (v === null || v === undefined) return '';
+    const t = Array.isArray(v) ? v.join(' | ')
+            : (typeof v === 'object' ? JSON.stringify(v) : String(v));
+    return `"${t.replace(/"/g, '""')}"`;
+  };
+  return [columnas.join(';'), ...filas.map(f => columnas.map(c => celda(f[c])).join(';'))].join('\r\n');
+}
+
+function descargar(nombre, contenido) {
+  // El BOM hace que Excel abra bien las tildes y las eñes.
+  const blob = new Blob(['\uFEFF' + contenido], { type: 'text/csv;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = nombre;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+
+$('#exportar').addEventListener('click', async (e) => {
+  const restaurar = ocupar(e.currentTarget, 'Preparando…');
+  const hoy = new Date().toISOString().slice(0, 10);
+  try {
+    for (const t of ['casos', 'profesionales', 'voluntarios', 'apadrinamientos', 'puntos_ayuda']) {
+      const filas = (await traerTodo(t, {})) || [];
+      if (filas.length) descargar(`sos-${t}-${hoy}.csv`, aCSV(filas));
+    }
+    restaurar();
+    aviso('Listo. Los archivos se descargaron: ábralos con Excel o súbalos a Drive.', 'ok');
+  } catch (err) {
+    restaurar();
+    aviso('No fue posible exportar: ' + err.message, 'error');
+  }
+});
 
 function enlaceCaso(c) {
   const base = location.origin + location.pathname.replace(/[^/]*$/, '');

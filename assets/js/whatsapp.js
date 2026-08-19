@@ -122,7 +122,22 @@ Ya puede entrar a la página, escoger una familia y registrar a qué se comprome
 Gracias por poner su oficio al servicio de quienes lo perdieron todo.` + FIRMA);
 }
 
-/** 5. Resumen para el equipo coordinador. */
+/** 5. Invitación a un profesional para que tome un caso. */
+export function mensajeInvitacion(caso, profesional, url) {
+  return (
+`Hola ${primerNombre(profesional.nombre)}, le escribimos de SOS por Colombia.
+
+Tenemos un caso que encaja con lo que usted ofrece y queremos preguntarle si puede tomarlo:
+
+*${caso.codigo} — ${caso.titulo}*
+Dónde: ${caso.municipio || ''} (${caso.departamento || ''})
+Hogar: ${caso.personas_hogar || '—'} personas${caso.ninos ? `, ${caso.ninos} niñas o niños` : ''}
+Necesita: ${listaNecesidades(caso.necesidades)}${url ? `\n\nPuede ver el caso completo aquí: ${url}` : ''}
+
+Si puede acompañarlo, respóndanos por aquí y le pasamos los datos de contacto de la familia. Si no puede en este momento, también dígalo con confianza: buscamos a otra persona.` + FIRMA);
+}
+
+/** 6. Resumen para el equipo coordinador. */
 export function mensajeResumenEquipo(conteos) {
   return (
 `*SOS por Colombia — pendientes por revisar*

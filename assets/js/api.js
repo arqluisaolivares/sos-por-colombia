@@ -383,3 +383,31 @@ export async function marcarAvisado(tabla, id, campo = 'avisado_en') {
     return false;
   }
 }
+
+/** Consulta pública de un caso: código + últimos 4 dígitos del WhatsApp. */
+export async function consultarCaso(codigo, telefono) {
+  const cod = String(codigo || '').trim().toUpperCase();
+  const dig = String(telefono || '').replace(/\D/g, '');
+
+  if (MODO_DEMO) {
+    await esperar(500);
+    const todos = [...CASOS_DEMO, ...(PENDIENTES_DEMO.casos || [])];
+    const c = todos.find(x => (x.codigo || '').toUpperCase() === cod);
+    if (!c) return null;
+    // En demostración se acepta cualquier número de 4 dígitos.
+    if (dig.length < 4) return null;
+    return {
+      codigo: c.codigo, estado: c.estado || 'aprobado', titulo: c.titulo,
+      creado_en: c.creado_en, municipio: c.municipio, departamento: c.departamento,
+      urgencia: c.urgencia, necesidades: c.necesidades,
+      padrinos: (c.padrinos || []).map(p => ({ ...p, telefono: '3009998877' })),
+      nota_moderacion: null
+    };
+  }
+
+  const r = await pedir(`${REST()}/rpc/consultar_caso`, {
+    method: 'POST', headers: encabezados(),
+    body: JSON.stringify({ p_codigo: cod, p_telefono: dig })
+  });
+  return (Array.isArray(r) ? r[0] : r) || null;
+}

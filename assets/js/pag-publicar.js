@@ -130,7 +130,7 @@ form.addEventListener('submit', async (e) => {
         ${MODO_DEMO ? `<div class="aviso aviso--alerta" style="text-align:left"><span class="aviso__icono">⚠️</span>
           <div>Este sitio está en modo demostración: el caso <strong>no se guardó</strong> en ninguna base de datos.</div></div>` : ''}
         <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px">
-          <a class="boton boton--primario" href="casos.html">Ver otras familias</a>
+          <a class="boton boton--primario" href="consulta.html${guardado && guardado.codigo ? '?codigo=' + encodeURIComponent(guardado.codigo) : ''}">Consultar mi caso</a>
           <a class="boton boton--linea" href="ayuda.html">¿Dónde consigo ayuda ya?</a>
         </div>
       </div>`);

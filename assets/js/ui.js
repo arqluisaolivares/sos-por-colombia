@@ -146,6 +146,7 @@ export function montarPie() {
           <h4>Participar</h4>
           <ul class="pie__lista">
             <li><a href="publicar.html">Reportar mi caso</a></li>
+            <li><a href="consulta.html">Consultar mi caso</a></li>
             <li><a href="profesionales.html#inscribirme">Inscribirme como profesional</a></li>
             <li><a href="voluntarios.html#inscribirme">Inscribirme como voluntario</a></li>
             <li><a href="casos.html">Apadrinar una familia</a></li>
