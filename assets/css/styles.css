@@ -98,7 +98,7 @@ p{margin:0 0 1em}
   padding:9px 11px;cursor:pointer;color:var(--navy);
 }
 
-@media (max-width:960px){
+@media (max-width:1080px){
   .menu-boton{display:block}
   .nav{
     position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);
@@ -624,3 +624,4 @@ html.pantallas{scroll-snap-type:y mandatory}
 /* Cuadrícula pareja de necesidades en la portada */
 @media (min-width:981px){ #tipos-ayuda{grid-template-columns:repeat(6,1fr)} }
 @media (min-width:641px) and (max-width:980px){ #tipos-ayuda{grid-template-columns:repeat(4,1fr)} }
+.opcion span{display:inline-flex;align-items:center;gap:8px}
