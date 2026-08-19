@@ -18,7 +18,8 @@ Una iniciativa de la **Fundación Profesionales Amigos**.
 | **Voluntarios** | Directorio e inscripción por oficios y habilidades: mampostería, conducción, cocina, censos. |
 | **¿Dónde consigo ayuda?** | Líneas oficiales de emergencia, puntos de acopio, albergues y guía por tipo de necesidad. |
 | **Tablero de resultados** | Página pública con las cifras: familias publicadas, acompañadas y resueltas, por departamento y por necesidad. |
-| **Panel de moderación** | Aprobar, rechazar y marcar como resuelto cada registro, y avisar por WhatsApp. Acceso restringido por correo. |
+| **Consultar mi caso** | La familia entra con su código (SOS-1234) y los últimos cuatro dígitos de su WhatsApp, y ve en qué va su caso y quién la acompaña. |
+| **Panel de moderación** | Aprobar, rechazar y marcar como resuelto cada registro, avisar por WhatsApp, buscar profesionales para un caso y descargar todo a Excel. Acceso restringido por correo. |
 
 ### Cómo protege a las familias
 
@@ -40,6 +41,7 @@ hay un botón verde que abre WhatsApp con el mensaje ya escrito:
 | **Avisar familia** (en Apadrinamientos) | Le dice a la familia quién la va a acompañar, con el número del profesional y a qué se comprometió. |
 | **Avisar padrino** | Le entrega al profesional los datos de contacto de la familia y lo que necesita. |
 | **Avisar** (en Profesionales y Voluntarios) | Confirma que la inscripción quedó aprobada. |
+| **Invitar** (dentro de "Buscar profesional") | Le pregunta a un profesional del directorio si puede tomar un caso concreto. |
 | **Resumen al equipo** | Arma un mensaje con todo lo que está pendiente por revisar, para mandarlo al grupo del equipo. |
 
 El moderador solo revisa el texto y presiona enviar. **No cuesta nada y no requiere
@@ -81,7 +83,9 @@ Supabase es gratuito para un proyecto de este tamaño.
    pegue el archivo y presione **Run**.
 5. Abra una tercera consulta y ejecute `supabase/03_avisos_whatsapp.sql`
    (registro de avisos y vistas del tablero).
-6. Menú lateral → **Project Settings → API**. Copie:
+6. Abra una cuarta y ejecute `supabase/04_consulta_caso.sql`
+   (consulta del caso por parte de la familia).
+7. Menú lateral → **Project Settings → API**. Copie:
    - *Project URL*
    - la llave *anon public*
 
@@ -120,6 +124,34 @@ a guardar de verdad.
 
 Para agregar más moderadores, repita: crear el usuario en *Authentication → Users* e insertar el correo
 en la tabla `admins`.
+
+
+---
+
+## Buscarle profesional a un caso
+
+En el panel, pestaña **Casos**, cada caso tiene el botón **Buscar profesional**. Abre el directorio
+filtrado por el departamento del caso y pone de primeros a los profesionales cuyos servicios
+coinciden con lo que la familia pidió. Al presionar **Invitar** se abre WhatsApp con el mensaje ya
+escrito, preguntándole si puede tomar ese caso.
+
+## Respaldo en Excel o Drive
+
+El botón **Descargar Excel** del panel baja cinco archivos `.csv` —casos, profesionales,
+voluntarios, apadrinamientos y puntos de ayuda— con la fecha en el nombre. Se abren directamente
+en Excel y se pueden subir a Google Drive o importar a Google Sheets
+(*Archivo → Importar → Subir*). Llevan BOM, así que las tildes y las eñes salen bien.
+
+> La copia viva de los datos es la base de datos, no el Excel. El archivo es para respaldos y
+> reportes. Tenga en cuenta que contiene teléfonos y direcciones: guárdelo en una carpeta de Drive
+> restringida al equipo, no en una compartida con enlace público.
+
+## Cómo consulta una familia su caso
+
+La familia entra a `consulta.html`, escribe el código del caso y **los últimos cuatro dígitos** del
+WhatsApp con el que reportó. Sin esos dos datos la consulta no devuelve nada, así que nadie puede
+mirar casos ajenos. Ahí ve el estado, lo que pidió y —si ya tiene padrino— el nombre, la profesión,
+el compromiso y el WhatsApp de quien la acompaña, con un botón para escribirle.
 
 ---
 
@@ -162,6 +194,7 @@ sos-por-colombia/
 ├── ayuda.html              ¿Dónde consigo ayuda?
 ├── admin.html              Panel de moderación
 ├── tablero.html            Tablero público de resultados
+├── consulta.html           Consulta del caso por parte de la familia
 ├── privacidad.html         Política de tratamiento de datos
 ├── assets/
 │   ├── css/styles.css      Sistema de diseño

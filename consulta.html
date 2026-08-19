@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consultar mi caso · SOS por Colombia</title>
+<meta name="description" content="Consulte en qué va su caso con el código que le entregamos y los últimos cuatro dígitos de su WhatsApp.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<main>
+  <section style="background:var(--navy);color:#fff;padding:44px 0 40px">
+    <div class="contenedor">
+      <h1 style="color:#fff;font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:.3em">¿En qué va mi caso?</h1>
+      <p style="color:rgba(255,255,255,.86);max-width:620px;margin:0">
+        Escriba el código que le dimos cuando publicó su caso y los últimos cuatro números
+        de su WhatsApp. Nadie más puede ver su caso sin esos dos datos.
+      </p>
+    </div>
+  </section>
+
+  <section class="seccion seccion--ajustada">
+    <div class="contenedor" style="max-width:720px">
+
+      <form id="form-consulta" class="tarjeta formulario" novalidate>
+        <div class="campos-fila">
+          <div class="campo">
+            <label for="codigo">Código del caso <span style="color:var(--red)">*</span></label>
+            <input type="text" id="codigo" name="codigo" required placeholder="SOS-1001"
+                   autocomplete="off" spellcheck="false" style="text-transform:uppercase">
+            <span class="ayuda">Lo recibió por WhatsApp cuando publicó el caso.</span>
+          </div>
+          <div class="campo">
+            <label for="telefono">Últimos 4 números de su WhatsApp <span style="color:var(--red)">*</span></label>
+            <input type="text" id="telefono" name="telefono" required maxlength="10"
+                   inputmode="numeric" placeholder="0000" autocomplete="off">
+            <span class="ayuda">Si su número es 300 123 <strong>4567</strong>, escriba 4567.</span>
+          </div>
+        </div>
+        <button class="boton boton--primario boton--ancho" type="submit">Consultar mi caso</button>
+      </form>
+
+      <div id="resultado" style="margin-top:24px"></div>
+
+      <div class="tarjeta" style="margin-top:24px;background:#EEF2FA;border-color:#C7D2E8">
+        <h3 style="font-size:1.05rem">¿Perdió el código?</h3>
+        <p style="font-size:.92rem;color:var(--ink-2);margin:0">
+          Escríbanos a <a href="mailto:arqluisaolivares@gmail.com">arqluisaolivares@gmail.com</a>
+          con su nombre y el municipio donde vive, y se lo reenviamos. Si su caso todavía no aparece,
+          es porque está en revisión: eso normalmente toma menos de 48 horas.
+        </p>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<script type="module" src="assets/js/pag-consulta.js"></script>
+</body>
+</html>
