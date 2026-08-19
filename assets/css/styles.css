@@ -739,3 +739,32 @@ html.pantallas{scroll-snap-type:y mandatory}
 @media (max-width:640px){ .pestana{padding:14px 12px;font-size:.9rem} }
 
 @media (max-width:640px){ .pantalla .caso__foto{height:98px} #p5 .pista{margin-top:0;font-size:.78rem} }
+
+/* =====================================================================
+   PANTALLAS BAJAS (ventanas de portátil con muchas barras del navegador)
+   Aquí no hay enganche de scroll, así que lo importante es que el
+   contenido entre completo y que nada quede debajo del encabezado.
+   ===================================================================== */
+@media (min-width:901px){
+  .portada__rejilla{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:36px}
+  .portada__acciones .boton--grande{padding:17px 24px;font-size:1.04rem}
+}
+
+@media (max-height:780px) and (min-width:901px){
+  .pantalla{padding:calc(var(--nav) + 20px) 0 34px}
+  .portada h1{font-size:clamp(1.7rem,2.9vw,2.35rem)}
+  .portada__etiqueta{margin-bottom:14px;padding:5px 13px;font-size:.72rem}
+  .portada__texto{font-size:1rem;margin-bottom:.6em}
+  .portada__acciones{margin-top:20px;gap:10px}
+  .portada__acciones .boton--grande{min-height:56px;padding:15px 22px;font-size:1rem}
+  .portada__ilustracion img{max-height:min(46vh,340px)}
+}
+
+@media (max-height:640px) and (min-width:901px){
+  .portada h1{font-size:clamp(1.5rem,2.4vw,1.95rem)}
+  .portada__ilustracion img{max-height:40vh}
+  .pantalla{padding:calc(var(--nav) + 16px) 0 28px}
+}
+
+/* El contenido nunca queda inalcanzable debajo del encabezado */
+.pantalla{align-content:safe center}
