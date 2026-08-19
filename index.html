@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es-CO">
+<html lang="es-CO" class="pantallas">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,142 +17,168 @@
 <body>
 
 <main>
-  <!-- ============ PORTADA ============ -->
-  <section class="portada">
-    <div class="contenedor">
+
+  <!-- ══════════ PANTALLA 1 · PORTADA ══════════ -->
+  <section class="pantalla pantalla--oscura portada" id="p1" data-pantalla="Inicio" data-tono="oscuro">
+    <div class="contenedor centro">
       <span class="portada__etiqueta"><span class="portada__punto"></span> Sismo del 10 de agosto de 2026</span>
-      <h1>Reconstruir es un trabajo<br>que se hace entre todos.</h1>
-      <p class="portada__texto">
-        SOS por Colombia conecta a las familias que perdieron su casa con arquitectos, ingenieros,
-        médicos, abogados y voluntarios que se comprometen a acompañarlas. No es una lista de
-        donaciones: es un compromiso con nombre propio, caso por caso.
+
+      <h1 style="max-width:16ch;margin-inline:auto">Reconstruir es un trabajo que se hace entre todos.</h1>
+
+      <p class="portada__texto" style="margin-inline:auto;text-align:center;max-width:600px">
+        Familias que perdieron su casa. Profesionales y voluntarios que quieren ayudar.
+        Aquí se encuentran.
       </p>
-      <div class="portada__acciones">
-        <a class="boton boton--dorado" href="publicar.html">Mi familia necesita ayuda</a>
-        <a class="boton boton--claro" href="casos.html">Quiero apadrinar una familia</a>
-      </div>
 
-      <div class="cifras" id="cifras">
-        <div class="cifra"><div class="cifra__num" data-cifra="profesionales">—</div><div class="cifra__etq">Profesionales inscritos</div></div>
-        <div class="cifra"><div class="cifra__num" data-cifra="voluntarios">—</div><div class="cifra__etq">Voluntarios disponibles</div></div>
-        <div class="cifra"><div class="cifra__num" data-cifra="casos_abiertos">—</div><div class="cifra__etq">Familias esperando</div></div>
-        <div class="cifra"><div class="cifra__num" data-cifra="apadrinamientos">—</div><div class="cifra__etq">Casos apadrinados</div></div>
-        <div class="cifra"><div class="cifra__num" data-cifra="casos_resueltos">—</div><div class="cifra__etq">Casos resueltos</div></div>
+      <div class="portada__acciones" style="justify-content:center;gap:16px;margin-top:34px">
+        <a class="boton boton--dorado boton--grande" href="publicar.html">Mi familia necesita ayuda</a>
+        <a class="boton boton--claro boton--grande" href="casos.html">Quiero apadrinar una familia</a>
       </div>
     </div>
+    <button class="baja" type="button" data-ir="#p2" aria-label="Ver la siguiente pantalla">
+      Siga bajando <span>↓</span>
+    </button>
   </section>
 
-  <!-- ============ CÓMO FUNCIONA ============ -->
-  <section class="seccion">
+  <!-- ══════════ PANTALLA 2 · POR DÓNDE ENTRA ══════════ -->
+  <section class="pantalla pantalla--crema" id="p2" data-pantalla="Por dónde entro">
     <div class="contenedor">
-      <div class="centro" style="max-width:620px;margin-inline:auto">
-        <h2>Cómo funciona el apadrinamiento</h2>
-        <p style="color:var(--ink-2)">Cada familia publica su caso. Cada profesional escoge uno y se compromete
-        con algo concreto: un plano, una evaluación, un acompañamiento. Nosotros verificamos y conectamos.</p>
+      <div class="titulo-pantalla">
+        <span class="rotulo">Escoja su camino</span>
+        <h2>¿Usted quién es?</h2>
+        <p>Toque el recuadro que corresponda. Solo hay tres caminos.</p>
       </div>
-      <div class="rejilla rejilla--4" style="margin-top:36px">
-        <article class="tarjeta">
-          <div class="paso__num">1</div>
-          <h3>La familia cuenta su caso</h3>
-          <p style="font-size:.9rem;color:var(--ink-2);margin:0">Sube fotos de su vivienda, describe qué pasó y qué
-          necesita. Puede hacerlo desde el celular, en cinco minutos.</p>
-        </article>
-        <article class="tarjeta">
-          <div class="paso__num">2</div>
-          <h3>Verificamos antes de publicar</h3>
-          <p style="font-size:.9rem;color:var(--ink-2);margin:0">Un moderador revisa cada caso. El teléfono y la
-          dirección nunca aparecen en la página: solo se comparten con quien apadrina.</p>
-        </article>
-        <article class="tarjeta">
-          <div class="paso__num">3</div>
-          <h3>Alguien lo apadrina</h3>
-          <p style="font-size:.9rem;color:var(--ink-2);margin:0">Un profesional o un voluntario inscrito escoge el
-          caso y escribe a qué se compromete y en qué plazo.</p>
-        </article>
-        <article class="tarjeta">
-          <div class="paso__num">4</div>
-          <h3>Se hace seguimiento</h3>
-          <p style="font-size:.9rem;color:var(--ink-2);margin:0">El caso queda con nombre y apellido de quien lo
-          acompaña, y se marca como resuelto cuando la familia lo confirma.</p>
-        </article>
-      </div>
-    </div>
-  </section>
 
-  <!-- ============ TRES PUERTAS ============ -->
-  <section class="seccion" style="background:#fff;border-block:1px solid var(--line)">
-    <div class="contenedor">
-      <h2 class="centro">¿Por dónde entra usted?</h2>
-      <div class="rejilla rejilla--3" style="margin-top:34px">
-
-        <article class="tarjeta tarjeta--enlace">
-          <div class="icono-caja icono-caja--rojo">🏚️</div>
-          <h3>Soy una familia damnificada</h3>
-          <p style="font-size:.92rem;color:var(--ink-2)">Publique su caso con fotos y su historia. Es gratuito y no
-          se necesita ningún trámite previo. Si no tiene internet, alguien puede publicarlo por usted.</p>
-          <a class="boton boton--rojo boton--ancho" href="publicar.html">Publicar mi caso</a>
+      <div class="rejilla rejilla--3 deslizable">
+        <article class="camino">
+          <div class="icono-grande icono-grande--rojo" data-icono="casa-danada" data-tam="42"></div>
+          <h3>Mi casa se dañó</h3>
+          <p>Cuente qué pasó y qué necesita. Es gratis y no pide ningún papel.</p>
+          <a class="boton boton--rojo boton--ancho" href="publicar.html">Pedir ayuda</a>
         </article>
 
-        <article class="tarjeta tarjeta--enlace">
-          <div class="icono-caja">📐</div>
+        <article class="camino">
+          <div class="icono-grande" data-icono="escuadra" data-tam="42"></div>
           <h3>Soy profesional</h3>
-          <p style="font-size:.92rem;color:var(--ink-2)">Arquitectura, ingeniería, salud, psicología, derecho,
-          topografía. Inscríbase, escoja un caso y comprométase con lo que realmente pueda cumplir.</p>
-          <a class="boton boton--primario boton--ancho" href="profesionales.html#inscribirme">Inscribirme como profesional</a>
+          <p>Arquitectura, ingeniería, salud, psicología, derecho. Escoja una familia y acompáñela.</p>
+          <a class="boton boton--primario boton--ancho" href="profesionales.html#inscribirme">Inscribirme</a>
         </article>
 
-        <article class="tarjeta tarjeta--enlace">
-          <div class="icono-caja icono-caja--dorado">🤝</div>
-          <h3>Quiero ser voluntario</h3>
-          <p style="font-size:.92rem;color:var(--ink-2)">No hace falta un título. Si sabe pegar bloque, conducir,
-          cocinar, cuidar niños o levantar un censo, hace falta aquí.</p>
-          <a class="boton boton--dorado boton--ancho" href="voluntarios.html#inscribirme">Inscribirme como voluntario</a>
+        <article class="camino">
+          <div class="icono-grande icono-grande--dorado" data-icono="corazon" data-tam="42"></div>
+          <h3>Quiero ayudar</h3>
+          <p>No necesita título. Pegar bloque, manejar, cocinar, cuidar niños: todo sirve.</p>
+          <a class="boton boton--dorado boton--ancho" href="voluntarios.html#inscribirme">Ser voluntario</a>
         </article>
-
       </div>
+      <p class="pista">← Deslice para ver los tres caminos →</p>
     </div>
+    <button class="baja" type="button" data-ir="#p3" aria-label="Ver la siguiente pantalla">
+      Siga bajando <span>↓</span>
+    </button>
   </section>
 
-  <!-- ============ CASOS RECIENTES ============ -->
-  <section class="seccion">
+  <!-- ══════════ PANTALLA 3 · CÓMO FUNCIONA ══════════ -->
+  <section class="pantalla pantalla--blanca" id="p3" data-pantalla="Cómo funciona">
     <div class="contenedor">
-      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:26px">
-        <div>
-          <h2 style="margin-bottom:.15em">Familias esperando un padrino</h2>
-          <p style="color:var(--ink-2);margin:0">Casos verificados que todavía no tienen a nadie acompañándolos.</p>
-        </div>
-        <a class="boton boton--linea" href="casos.html">Ver todas las familias</a>
+      <div class="titulo-pantalla">
+        <span class="rotulo">Apadrinar una familia</span>
+        <h2>Así funciona</h2>
+        <p>Cuatro pasos. Nada más.</p>
       </div>
-      <div class="rejilla rejilla--3" id="casos-portada">
+
+      <div class="rejilla rejilla--4">
+        <article class="paso">
+          <div class="paso__circulo" data-icono="camara" data-tam="32"><span class="paso__orden">1</span></div>
+          <h3>La familia cuenta</h3>
+          <p>Sube fotos de la casa y escribe qué necesita. Desde el celular, en cinco minutos.</p>
+        </article>
+        <article class="paso">
+          <div class="paso__circulo" data-icono="escudo" data-tam="32"><span class="paso__orden">2</span></div>
+          <h3>Nosotros verificamos</h3>
+          <p>Revisamos cada caso antes de publicarlo. El teléfono y la dirección nunca salen.</p>
+        </article>
+        <article class="paso">
+          <div class="paso__circulo" data-icono="personas" data-tam="32"><span class="paso__orden">3</span></div>
+          <h3>Alguien la apadrina</h3>
+          <p>Un profesional o un voluntario escoge el caso y dice a qué se compromete.</p>
+        </article>
+        <article class="paso">
+          <div class="paso__circulo" data-icono="casa-corazon" data-tam="32"><span class="paso__orden">4</span></div>
+          <h3>Se cumple</h3>
+          <p>El caso queda con nombre propio y se marca resuelto cuando la familia lo confirma.</p>
+        </article>
+      </div>
+    </div>
+    <button class="baja" type="button" data-ir="#p4" aria-label="Ver la siguiente pantalla">
+      Siga bajando <span>↓</span>
+    </button>
+  </section>
+
+  <!-- ══════════ PANTALLA 4 · QUÉ NECESITA ══════════ -->
+  <section class="pantalla pantalla--crema" id="p4" data-pantalla="Qué necesita">
+    <div class="contenedor">
+      <div class="titulo-pantalla">
+        <span class="rotulo">Aquí se consigue</span>
+        <h2>¿Qué necesita hoy?</h2>
+        <p>Toque lo que le hace falta y vea qué familias lo están pidiendo.</p>
+      </div>
+
+      <div class="rejilla rejilla--4" id="tipos-ayuda" style="gap:14px"></div>
+
+      <div class="centro" style="margin-top:26px">
+        <a class="boton boton--linea" href="ayuda.html">Ver líneas oficiales y puntos de acopio</a>
+      </div>
+    </div>
+    <button class="baja" type="button" data-ir="#p5" aria-label="Ver la siguiente pantalla">
+      Siga bajando <span>↓</span>
+    </button>
+  </section>
+
+  <!-- ══════════ PANTALLA 5 · FAMILIAS ══════════ -->
+  <section class="pantalla pantalla--blanca" id="p5" data-pantalla="Familias">
+    <div class="contenedor">
+      <div class="titulo-pantalla">
+        <span class="rotulo">Esperando un padrino</span>
+        <h2>Estas familias esperan</h2>
+        <p>Casos verificados que todavía no tienen a nadie acompañándolos.</p>
+      </div>
+
+      <div class="rejilla rejilla--3 deslizable" id="casos-portada">
         <div class="cargando"><div class="girador"></div>Cargando casos…</div>
       </div>
+      <p class="pista">← Deslice para ver más familias →</p>
+
+      <div class="centro" style="margin-top:20px">
+        <a class="boton boton--primario" href="casos.html">Ver todas las familias</a>
+      </div>
+    </div>
+    <button class="baja" type="button" data-ir="#p6" aria-label="Ver la siguiente pantalla">
+      Siga bajando <span>↓</span>
+    </button>
+  </section>
+
+  <!-- ══════════ PANTALLA 6 · CIFRAS ══════════ -->
+  <section class="pantalla pantalla--oscura" id="p6" data-pantalla="Cifras" data-tono="oscuro"
+           style="background:linear-gradient(158deg,var(--navy-900) 0%, var(--navy) 60%, #123f96 100%)">
+    <div class="contenedor">
+      <div class="titulo-pantalla">
+        <span class="rotulo">La dimensión de lo que pasó</span>
+        <h2 style="color:#fff">Nadie puede solo</h2>
+        <p>Por eso esta plataforma existe.</p>
+      </div>
+
+      <div class="rejilla rejilla--4" id="contexto" style="gap:18px"></div>
+      <p class="centro" style="margin:20px 0 0;font-size:.79rem;color:rgba(255,255,255,.55)" id="fuente-contexto"></p>
+
+      <div class="rejilla rejilla--4" id="cifras-plataforma" style="gap:14px;margin-top:34px"></div>
+
+      <div class="centro" style="margin-top:30px">
+        <a class="boton boton--dorado boton--grande" href="publicar.html">Mi familia necesita ayuda</a>
+      </div>
     </div>
   </section>
 
-  <!-- ============ QUÉ SE PUEDE CONSEGUIR ============ -->
-  <section class="seccion" style="background:#fff;border-block:1px solid var(--line)">
-    <div class="contenedor">
-      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:26px">
-        <div>
-          <h2 style="margin-bottom:.15em">¿Qué se puede conseguir aquí?</h2>
-          <p style="color:var(--ink-2);margin:0">Ayuda física, técnica y de acompañamiento. Todo en un solo lugar.</p>
-        </div>
-        <a class="boton boton--linea" href="ayuda.html">Ir al directorio de ayuda</a>
-      </div>
-      <div class="rejilla rejilla--4" id="tipos-ayuda"></div>
-    </div>
-  </section>
-
-  <!-- ============ CONTEXTO DEL EVENTO ============ -->
-  <section class="seccion">
-    <div class="contenedor">
-      <div class="tarjeta" style="background:var(--navy-900);color:#fff;border:none">
-        <h2 style="color:#fff">La dimensión de lo que pasó</h2>
-        <div class="rejilla rejilla--4" style="margin-top:22px" id="contexto"></div>
-        <p style="margin:22px 0 0;font-size:.79rem;color:rgba(255,255,255,.55)" id="fuente-contexto"></p>
-      </div>
-    </div>
-  </section>
 </main>
 
 <script type="module" src="assets/js/pag-inicio.js"></script>
