@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Familias que necesitan ayuda · SOS por Colombia</title>
+<meta name="description" content="Casos verificados de familias afectadas por el sismo. Escoja uno y comprométase con algo concreto.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<main>
+  <section style="background:var(--navy);color:#fff;padding:42px 0 38px">
+    <div class="contenedor">
+      <h1 style="color:#fff;font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:.3em">Familias que necesitan ayuda</h1>
+      <p style="color:rgba(255,255,255,.86);max-width:640px;margin:0">
+        Cada caso fue revisado por un moderador antes de publicarse. Los datos de contacto de la familia
+        solo se comparten con quien se compromete a acompañarla.
+      </p>
+    </div>
+  </section>
+
+  <section class="seccion seccion--ajustada">
+    <div class="contenedor">
+
+      <form class="filtros" id="filtros">
+        <div class="campo">
+          <label for="f-busqueda">Buscar</label>
+          <input type="text" id="f-busqueda" name="busqueda" placeholder="Municipio, barrio, código…">
+        </div>
+        <div class="campo">
+          <label for="f-departamento">Departamento</label>
+          <select id="f-departamento" name="departamento"></select>
+        </div>
+        <div class="campo">
+          <label for="f-necesidad">Necesidad</label>
+          <select id="f-necesidad" name="necesidad"></select>
+        </div>
+        <div class="campo">
+          <label for="f-urgencia">Urgencia</label>
+          <select id="f-urgencia" name="urgencia">
+            <option value="">Todas</option>
+            <option value="alta">Alta</option>
+            <option value="media">Media</option>
+            <option value="baja">Baja</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="f-estado">Estado</label>
+          <select id="f-estado" name="estado">
+            <option value="">Todos</option>
+            <option value="sin_padrino">Sin padrino</option>
+            <option value="apadrinado">Ya apadrinados</option>
+            <option value="resuelto">Resueltos</option>
+          </select>
+        </div>
+        <div class="campo">
+          <button type="button" class="boton boton--linea boton--ancho" id="limpiar">Limpiar filtros</button>
+        </div>
+      </form>
+
+      <p id="conteo" style="color:var(--ink-3);font-size:.9rem;margin-bottom:18px"></p>
+
+      <div class="rejilla rejilla--3" id="lista">
+        <div class="cargando"><div class="girador"></div>Cargando casos…</div>
+      </div>
+
+      <div class="tarjeta centro" style="margin-top:34px;background:#EEF2FA;border-color:#C7D2E8">
+        <h3>¿Su familia también quedó afectada?</h3>
+        <p style="color:var(--ink-2);max-width:520px;margin:0 auto 18px">
+          Publicar su caso es gratuito y toma unos minutos. Si no tiene cómo hacerlo, pídale a un vecino o
+          a un líder comunitario que lo publique por usted.
+        </p>
+        <a class="boton boton--rojo" href="publicar.html">Publicar mi caso</a>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<script type="module" src="assets/js/pag-casos.js"></script>
+</body>
+</html>

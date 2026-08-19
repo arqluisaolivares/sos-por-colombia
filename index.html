@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOS por Colombia · Reconstruir es un trabajo entre todos</title>
+<meta name="description" content="Plataforma que conecta a las familias afectadas por el sismo del 10 de agosto de 2026 con arquitectos, ingenieros, profesionales y voluntarios dispuestos a acompañarlas.">
+<meta property="og:title" content="SOS por Colombia">
+<meta property="og:description" content="Conectamos a las familias damnificadas con profesionales y voluntarios que las acompañan hasta reconstruir.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<main>
+  <!-- ============ PORTADA ============ -->
+  <section class="portada">
+    <div class="contenedor">
+      <span class="portada__etiqueta"><span class="portada__punto"></span> Sismo del 10 de agosto de 2026</span>
+      <h1>Reconstruir es un trabajo<br>que se hace entre todos.</h1>
+      <p class="portada__texto">
+        SOS por Colombia conecta a las familias que perdieron su casa con arquitectos, ingenieros,
+        médicos, abogados y voluntarios que se comprometen a acompañarlas. No es una lista de
+        donaciones: es un compromiso con nombre propio, caso por caso.
+      </p>
+      <div class="portada__acciones">
+        <a class="boton boton--dorado" href="publicar.html">Mi familia necesita ayuda</a>
+        <a class="boton boton--claro" href="casos.html">Quiero apadrinar una familia</a>
+      </div>
+
+      <div class="cifras" id="cifras">
+        <div class="cifra"><div class="cifra__num" data-cifra="profesionales">—</div><div class="cifra__etq">Profesionales inscritos</div></div>
+        <div class="cifra"><div class="cifra__num" data-cifra="voluntarios">—</div><div class="cifra__etq">Voluntarios disponibles</div></div>
+        <div class="cifra"><div class="cifra__num" data-cifra="casos_abiertos">—</div><div class="cifra__etq">Familias esperando</div></div>
+        <div class="cifra"><div class="cifra__num" data-cifra="apadrinamientos">—</div><div class="cifra__etq">Casos apadrinados</div></div>
+        <div class="cifra"><div class="cifra__num" data-cifra="casos_resueltos">—</div><div class="cifra__etq">Casos resueltos</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CÓMO FUNCIONA ============ -->
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="centro" style="max-width:620px;margin-inline:auto">
+        <h2>Cómo funciona el apadrinamiento</h2>
+        <p style="color:var(--ink-2)">Cada familia publica su caso. Cada profesional escoge uno y se compromete
+        con algo concreto: un plano, una evaluación, un acompañamiento. Nosotros verificamos y conectamos.</p>
+      </div>
+      <div class="rejilla rejilla--4" style="margin-top:36px">
+        <article class="tarjeta">
+          <div class="paso__num">1</div>
+          <h3>La familia cuenta su caso</h3>
+          <p style="font-size:.9rem;color:var(--ink-2);margin:0">Sube fotos de su vivienda, describe qué pasó y qué
+          necesita. Puede hacerlo desde el celular, en cinco minutos.</p>
+        </article>
+        <article class="tarjeta">
+          <div class="paso__num">2</div>
+          <h3>Verificamos antes de publicar</h3>
+          <p style="font-size:.9rem;color:var(--ink-2);margin:0">Un moderador revisa cada caso. El teléfono y la
+          dirección nunca aparecen en la página: solo se comparten con quien apadrina.</p>
+        </article>
+        <article class="tarjeta">
+          <div class="paso__num">3</div>
+          <h3>Alguien lo apadrina</h3>
+          <p style="font-size:.9rem;color:var(--ink-2);margin:0">Un profesional o un voluntario inscrito escoge el
+          caso y escribe a qué se compromete y en qué plazo.</p>
+        </article>
+        <article class="tarjeta">
+          <div class="paso__num">4</div>
+          <h3>Se hace seguimiento</h3>
+          <p style="font-size:.9rem;color:var(--ink-2);margin:0">El caso queda con nombre y apellido de quien lo
+          acompaña, y se marca como resuelto cuando la familia lo confirma.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TRES PUERTAS ============ -->
+  <section class="seccion" style="background:#fff;border-block:1px solid var(--line)">
+    <div class="contenedor">
+      <h2 class="centro">¿Por dónde entra usted?</h2>
+      <div class="rejilla rejilla--3" style="margin-top:34px">
+
+        <article class="tarjeta tarjeta--enlace">
+          <div class="icono-caja icono-caja--rojo">🏚️</div>
+          <h3>Soy una familia damnificada</h3>
+          <p style="font-size:.92rem;color:var(--ink-2)">Publique su caso con fotos y su historia. Es gratuito y no
+          se necesita ningún trámite previo. Si no tiene internet, alguien puede publicarlo por usted.</p>
+          <a class="boton boton--rojo boton--ancho" href="publicar.html">Publicar mi caso</a>
+        </article>
+
+        <article class="tarjeta tarjeta--enlace">
+          <div class="icono-caja">📐</div>
+          <h3>Soy profesional</h3>
+          <p style="font-size:.92rem;color:var(--ink-2)">Arquitectura, ingeniería, salud, psicología, derecho,
+          topografía. Inscríbase, escoja un caso y comprométase con lo que realmente pueda cumplir.</p>
+          <a class="boton boton--primario boton--ancho" href="profesionales.html#inscribirme">Inscribirme como profesional</a>
+        </article>
+
+        <article class="tarjeta tarjeta--enlace">
+          <div class="icono-caja icono-caja--dorado">🤝</div>
+          <h3>Quiero ser voluntario</h3>
+          <p style="font-size:.92rem;color:var(--ink-2)">No hace falta un título. Si sabe pegar bloque, conducir,
+          cocinar, cuidar niños o levantar un censo, hace falta aquí.</p>
+          <a class="boton boton--dorado boton--ancho" href="voluntarios.html#inscribirme">Inscribirme como voluntario</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CASOS RECIENTES ============ -->
+  <section class="seccion">
+    <div class="contenedor">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:26px">
+        <div>
+          <h2 style="margin-bottom:.15em">Familias esperando un padrino</h2>
+          <p style="color:var(--ink-2);margin:0">Casos verificados que todavía no tienen a nadie acompañándolos.</p>
+        </div>
+        <a class="boton boton--linea" href="casos.html">Ver todas las familias</a>
+      </div>
+      <div class="rejilla rejilla--3" id="casos-portada">
+        <div class="cargando"><div class="girador"></div>Cargando casos…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUÉ SE PUEDE CONSEGUIR ============ -->
+  <section class="seccion" style="background:#fff;border-block:1px solid var(--line)">
+    <div class="contenedor">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:26px">
+        <div>
+          <h2 style="margin-bottom:.15em">¿Qué se puede conseguir aquí?</h2>
+          <p style="color:var(--ink-2);margin:0">Ayuda física, técnica y de acompañamiento. Todo en un solo lugar.</p>
+        </div>
+        <a class="boton boton--linea" href="ayuda.html">Ir al directorio de ayuda</a>
+      </div>
+      <div class="rejilla rejilla--4" id="tipos-ayuda"></div>
+    </div>
+  </section>
+
+  <!-- ============ CONTEXTO DEL EVENTO ============ -->
+  <section class="seccion">
+    <div class="contenedor">
+      <div class="tarjeta" style="background:var(--navy-900);color:#fff;border:none">
+        <h2 style="color:#fff">La dimensión de lo que pasó</h2>
+        <div class="rejilla rejilla--4" style="margin-top:22px" id="contexto"></div>
+        <p style="margin:22px 0 0;font-size:.79rem;color:rgba(255,255,255,.55)" id="fuente-contexto"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="assets/js/pag-inicio.js"></script>
+</body>
+</html>

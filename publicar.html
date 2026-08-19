@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Publicar mi caso · SOS por Colombia</title>
+<meta name="description" content="Cuente qué le pasó a su vivienda y qué necesita. Un moderador lo verifica y lo conecta con profesionales y voluntarios.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<main>
+  <section style="background:var(--red);color:#fff;padding:42px 0 38px">
+    <div class="contenedor">
+      <h1 style="color:#fff;font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:.3em">Cuéntenos qué necesita su familia</h1>
+      <p style="color:rgba(255,255,255,.92);max-width:660px;margin:0">
+        Es gratuito y no necesita ningún trámite previo. Si prefiere, alguien puede llenarlo por usted:
+        un vecino, un familiar o un líder comunitario.
+      </p>
+    </div>
+  </section>
+
+  <section class="seccion seccion--ajustada">
+    <div class="contenedor" style="max-width:820px">
+
+      <div class="aviso aviso--alerta" style="margin-bottom:24px">
+        <span class="aviso__icono">⚠️</span>
+        <div>
+          <strong>Si hay una emergencia en este momento</strong> —personas atrapadas, heridas o una
+          estructura a punto de caer— llame primero al <a href="tel:123">123</a>. Este formulario es para
+          organizar la ayuda de los próximos días y semanas, no para atender emergencias inmediatas.
+        </div>
+      </div>
+
+      <form id="form-caso" class="formulario" novalidate>
+
+        <!-- 1. QUIÉN REPORTA -->
+        <fieldset style="border:none;padding:0;margin:0">
+          <h2 style="font-size:1.2rem">1. ¿Quién reporta el caso?</h2>
+          <div class="formulario">
+            <div class="campos-fila">
+              <div class="campo">
+                <label for="nombre_contacto">Nombre completo <span style="color:var(--red)">*</span></label>
+                <input type="text" id="nombre_contacto" name="nombre_contacto" required autocomplete="name">
+                <span class="ayuda">En la página pública solo se mostrará su primer nombre.</span>
+              </div>
+              <div class="campo">
+                <label for="parentesco">¿Qué relación tiene con la familia?</label>
+                <select id="parentesco" name="parentesco">
+                  <option value="">Seleccione</option>
+                  <option value="soy_afectado">Soy parte de la familia afectada</option>
+                  <option value="familiar">Soy familiar</option>
+                  <option value="vecino">Soy vecino</option>
+                  <option value="lider">Soy líder comunitario</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
+            </div>
+            <div class="campos-fila">
+              <div class="campo">
+                <label for="telefono">Teléfono o WhatsApp <span style="color:var(--red)">*</span></label>
+                <input type="tel" id="telefono" name="telefono" required autocomplete="tel" placeholder="300 000 0000">
+                <span class="ayuda">Reservado. Solo se comparte con quien apadrine el caso.</span>
+              </div>
+              <div class="campo">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" autocomplete="email" placeholder="Opcional">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- 2. DÓNDE -->
+        <fieldset style="border:none;padding:0;margin:22px 0 0">
+          <h2 style="font-size:1.2rem">2. ¿Dónde queda la vivienda?</h2>
+          <div class="formulario">
+            <div class="campos-fila">
+              <div class="campo">
+                <label for="departamento">Departamento <span style="color:var(--red)">*</span></label>
+                <select id="departamento" name="departamento" required></select>
+              </div>
+              <div class="campo">
+                <label for="municipio">Municipio <span style="color:var(--red)">*</span></label>
+                <input type="text" id="municipio" name="municipio" required>
+              </div>
+            </div>
+            <div class="campos-fila">
+              <div class="campo">
+                <label for="barrio">Barrio o vereda</label>
+                <input type="text" id="barrio" name="barrio">
+                <span class="ayuda">Esto sí se muestra en la página.</span>
+              </div>
+              <div class="campo">
+                <label for="direccion">Dirección exacta</label>
+                <input type="text" id="direccion" name="direccion">
+                <span class="ayuda">Reservada. Nunca se publica.</span>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- 3. LA FAMILIA -->
+        <fieldset style="border:none;padding:0;margin:22px 0 0">
+          <h2 style="font-size:1.2rem">3. ¿Quiénes viven ahí?</h2>
+          <div class="rejilla rejilla--4">
+            <div class="campo">
+              <label for="personas_hogar">Total de personas</label>
+              <input type="number" id="personas_hogar" name="personas_hogar" min="0" max="99" value="1">
+            </div>
+            <div class="campo">
+              <label for="ninos">Niñas y niños</label>
+              <input type="number" id="ninos" name="ninos" min="0" max="99" value="0">
+            </div>
+            <div class="campo">
+              <label for="adultos_mayores">Adultos mayores</label>
+              <input type="number" id="adultos_mayores" name="adultos_mayores" min="0" max="99" value="0">
+            </div>
+            <div class="campo">
+              <label for="personas_discapacidad">Personas con discapacidad</label>
+              <input type="number" id="personas_discapacidad" name="personas_discapacidad" min="0" max="99" value="0">
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- 4. LA VIVIENDA Y LA HISTORIA -->
+        <fieldset style="border:none;padding:0;margin:22px 0 0">
+          <h2 style="font-size:1.2rem">4. ¿Qué le pasó a la vivienda?</h2>
+          <div class="formulario">
+            <div class="campos-fila">
+              <div class="campo">
+                <label for="estado_vivienda">Estado de la vivienda <span style="color:var(--red)">*</span></label>
+                <select id="estado_vivienda" name="estado_vivienda" required></select>
+              </div>
+              <div class="campo">
+                <label for="tenencia">¿La vivienda es…?</label>
+                <select id="tenencia" name="tenencia"></select>
+              </div>
+            </div>
+            <div class="campo">
+              <label for="titulo">Resuma su caso en una frase <span style="color:var(--red)">*</span></label>
+              <input type="text" id="titulo" name="titulo" required maxlength="110"
+                     placeholder="Ejemplo: Casa de dos plantas agrietada, familia con dos niños durmiendo afuera">
+            </div>
+            <div class="campo">
+              <label for="historia">Cuente su historia <span style="color:var(--red)">*</span></label>
+              <textarea id="historia" name="historia" required minlength="60" rows="7"
+                placeholder="Escriba con sus propias palabras qué pasó el día del sismo, cómo está su familia hoy y qué es lo más urgente. Entre más claro sea, más fácil es que alguien se comprometa."></textarea>
+              <span class="ayuda"><span id="contador">0</span> caracteres · mínimo 60</span>
+            </div>
+            <div class="campo">
+              <label for="urgencia">¿Qué tan urgente es? <span style="color:var(--red)">*</span></label>
+              <select id="urgencia" name="urgencia" required>
+                <option value="alta">Alta · estamos a la intemperie o en riesgo inmediato</option>
+                <option value="media" selected>Media · tenemos dónde estar pero necesitamos resolver pronto</option>
+                <option value="baja">Baja · podemos esperar unas semanas</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- 5. NECESIDADES -->
+        <fieldset style="border:none;padding:0;margin:22px 0 0">
+          <h2 style="font-size:1.2rem">5. ¿Qué necesitan?</h2>
+          <div class="campo">
+            <label>Marque todo lo que aplique <span style="color:var(--red)">*</span></label>
+            <div class="opciones" id="opc-necesidades"></div>
+          </div>
+        </fieldset>
+
+        <!-- 6. FOTOS -->
+        <fieldset style="border:none;padding:0;margin:22px 0 0">
+          <h2 style="font-size:1.2rem">6. Fotos de la vivienda</h2>
+          <p style="font-size:.88rem;color:var(--ink-2);margin-top:-6px">
+            Las fotos ayudan muchísimo a que un profesional entienda el daño y decida acompañarlos.
+            Evite fotos donde se vean caras de niñas y niños.
+          </p>
+          <div class="zona-fotos" id="zona-fotos" tabindex="0" role="button"
+               aria-label="Agregar fotografías de la vivienda">
+            <div style="font-size:2rem">📷</div>
+            <strong>Toque aquí para agregar fotos</strong>
+            <div class="ayuda">Hasta 6 imágenes · máximo 5 MB cada una</div>
+            <input type="file" id="entrada-fotos" accept="image/*" multiple hidden>
+          </div>
+          <div class="previsualizacion" id="previsualizacion"></div>
+        </fieldset>
+
+        <!-- 7. AUTORIZACIONES -->
+        <fieldset style="border:none;padding:0;margin:22px 0 0">
+          <h2 style="font-size:1.2rem">7. Autorizaciones</h2>
+          <div class="formulario">
+            <label class="acepta">
+              <input type="checkbox" name="autoriza_datos" required>
+              <span>Autorizo a la Fundación Profesionales Amigos a tratar los datos personales aquí
+              consignados con la única finalidad de gestionar ayuda para mi familia, conforme a la
+              Ley 1581 de 2012. Entiendo que mi teléfono y mi dirección no se publican y que solo se
+              comparten con la persona u organización que apadrine el caso.
+              <a href="privacidad.html" target="_blank">Ver la política completa</a>. <span style="color:var(--red)">*</span></span>
+            </label>
+            <label class="acepta">
+              <input type="checkbox" name="autoriza_fotos">
+              <span>Autorizo la publicación de las fotografías de mi vivienda en esta página web.
+              Si no marca esta casilla, las fotos solo las verá el equipo de moderación.</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <button class="boton boton--rojo boton--ancho" type="submit" style="margin-top:8px">Enviar mi caso</button>
+        <p style="font-size:.8rem;color:var(--ink-3);text-align:center;margin:0">
+          Su caso queda en revisión. Un moderador lo verifica antes de publicarlo, normalmente en menos de 48 horas.
+        </p>
+
+      </form>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="assets/js/pag-publicar.js"></script>
+</body>
+</html>

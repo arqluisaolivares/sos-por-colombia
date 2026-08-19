@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voluntarios · SOS por Colombia</title>
+<meta name="description" content="Oficios y habilidades que hacen falta para reconstruir: mampostería, conducción, cocina, primeros auxilios, censos.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<main>
+  <section style="background:linear-gradient(135deg,var(--gold-600),var(--gold));color:var(--navy-900);padding:42px 0 38px">
+    <div class="contenedor">
+      <h1 style="font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:.3em">Voluntarios</h1>
+      <p style="max-width:660px;margin:0 0 22px;color:#3B2F06;font-weight:500">
+        Aquí no se necesita un título. Si sabe pegar bloque, manejar un camión, cocinar para cincuenta personas,
+        cuidar niños o levantar un censo casa por casa, hace falta.
+      </p>
+      <a class="boton boton--primario" href="#inscribirme">Inscribirme como voluntario</a>
+    </div>
+  </section>
+
+  <section class="seccion seccion--ajustada">
+    <div class="contenedor">
+      <h2>Quiénes están disponibles</h2>
+      <form class="filtros" id="filtros">
+        <div class="campo">
+          <label for="f-busqueda">Buscar</label>
+          <input type="text" id="f-busqueda" name="busqueda" placeholder="Nombre, oficio, ciudad…">
+        </div>
+        <div class="campo">
+          <label for="f-habilidad">Habilidad</label>
+          <select id="f-habilidad" name="habilidad"></select>
+        </div>
+        <div class="campo">
+          <label for="f-departamento">Puede ir a</label>
+          <select id="f-departamento" name="departamento"></select>
+        </div>
+        <div class="campo">
+          <button type="button" class="boton boton--linea boton--ancho" id="limpiar">Limpiar</button>
+        </div>
+      </form>
+      <p id="conteo" style="color:var(--ink-3);font-size:.9rem;margin-bottom:18px"></p>
+      <div class="rejilla rejilla--3" id="lista">
+        <div class="cargando"><div class="girador"></div>Cargando voluntarios…</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion" id="inscribirme" style="background:#fff;border-top:1px solid var(--line)">
+    <div class="contenedor" style="max-width:820px">
+      <h2>Inscripción de voluntarios</h2>
+      <p style="color:var(--ink-2)">Sus datos de contacto no se publican. Solo los ve el equipo de coordinación.</p>
+
+      <form id="form-voluntario" class="formulario" novalidate style="margin-top:24px">
+
+        <div class="campos-fila">
+          <div class="campo">
+            <label for="nombre">Nombre completo <span style="color:var(--red)">*</span></label>
+            <input type="text" id="nombre" name="nombre" required autocomplete="name">
+          </div>
+          <div class="campo">
+            <label for="oficio">¿A qué se dedica?</label>
+            <input type="text" id="oficio" name="oficio" placeholder="Ejemplo: maestro de obra, estudiante, ama de casa">
+          </div>
+        </div>
+
+        <div class="campos-fila">
+          <div class="campo">
+            <label for="email">Correo electrónico <span style="color:var(--red)">*</span></label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+          <div class="campo">
+            <label for="telefono">Teléfono o WhatsApp <span style="color:var(--red)">*</span></label>
+            <input type="tel" id="telefono" name="telefono" required autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="campos-fila">
+          <div class="campo">
+            <label for="ciudad">Ciudad donde vive</label>
+            <input type="text" id="ciudad" name="ciudad">
+          </div>
+          <div class="campo">
+            <label for="departamento">Departamento</label>
+            <select id="departamento" name="departamento"></select>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label>¿Qué sabe hacer? <span style="color:var(--red)">*</span></label>
+          <div class="opciones" id="opc-habilidades"></div>
+        </div>
+
+        <div class="campo">
+          <label for="otra_habilidad">¿Sabe hacer algo más que no esté en la lista?</label>
+          <input type="text" id="otra_habilidad" name="otra_habilidad">
+        </div>
+
+        <div class="campo">
+          <label>¿A qué departamentos puede desplazarse? <span style="color:var(--red)">*</span></label>
+          <div class="opciones" id="opc-zonas"></div>
+        </div>
+
+        <div class="campos-fila">
+          <div class="campo">
+            <label for="disponibilidad">Disponibilidad</label>
+            <select id="disponibilidad" name="disponibilidad"></select>
+          </div>
+          <div class="campo">
+            <label for="tipo_vehiculo">¿Tiene vehículo? ¿Cuál?</label>
+            <input type="text" id="tipo_vehiculo" name="tipo_vehiculo" placeholder="Ejemplo: camioneta, moto, camión de 5 t">
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="descripcion">Cuéntenos cómo quiere ayudar</label>
+          <textarea id="descripcion" name="descripcion" rows="4"
+            placeholder="Ejemplo: llevo treinta años pegando bloque y puedo enseñarle a la gente del barrio a levantar muros bien confinados."></textarea>
+        </div>
+
+        <label class="acepta">
+          <input type="checkbox" name="mayor_de_edad" required>
+          <span>Declaro que soy mayor de edad. <span style="color:var(--red)">*</span></span>
+        </label>
+
+        <label class="acepta">
+          <input type="checkbox" name="autoriza_datos" required>
+          <span>Autorizo el tratamiento de mis datos personales por parte de la Fundación Profesionales
+          Amigos para vincularme como voluntario, conforme a la Ley 1581 de 2012.
+          <a href="privacidad.html" target="_blank">Ver política</a>. <span style="color:var(--red)">*</span></span>
+        </label>
+
+        <button class="boton boton--dorado boton--ancho" type="submit">Enviar inscripción</button>
+        <p style="font-size:.8rem;color:var(--ink-3);text-align:center;margin:0">
+          El equipo de coordinación lo contactará cuando haya una jornada donde su ayuda encaje.
+        </p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="assets/js/pag-voluntarios.js"></script>
+</body>
+</html>

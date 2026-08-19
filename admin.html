@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Panel de moderación · SOS por Colombia</title>
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<main>
+  <section style="background:var(--navy-900);color:#fff;padding:34px 0 30px">
+    <div class="contenedor" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+      <div>
+        <h1 style="color:#fff;font-size:1.6rem;margin:0">Panel de moderación</h1>
+        <p style="color:rgba(255,255,255,.7);margin:4px 0 0;font-size:.9rem" id="quien"></p>
+      </div>
+      <button class="boton boton--claro boton--pequeno oculto" id="salir">Cerrar sesión</button>
+    </div>
+  </section>
+
+  <section class="seccion seccion--ajustada">
+    <div class="contenedor">
+
+      <!-- ACCESO -->
+      <div id="acceso" class="tarjeta" style="max-width:480px;margin-inline:auto">
+        <h2 style="font-size:1.25rem">Ingresar</h2>
+        <p style="font-size:.9rem;color:var(--ink-2)">
+          Escriba el correo registrado como moderador. Le enviaremos un enlace de acceso; no hay contraseña.
+        </p>
+        <form id="form-acceso" class="formulario" novalidate>
+          <div class="campo">
+            <label for="ac-email">Correo del moderador</label>
+            <input type="email" id="ac-email" name="email" required autocomplete="email">
+          </div>
+          <button class="boton boton--primario boton--ancho" type="submit">Enviar enlace de acceso</button>
+        </form>
+      </div>
+
+      <!-- PANEL -->
+      <div id="panel" class="oculto">
+        <div class="rejilla rejilla--4" id="resumen" style="margin-bottom:26px"></div>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px" id="pestanas">
+          <button class="boton boton--primario boton--pequeno" data-tabla="casos">Casos</button>
+          <button class="boton boton--linea boton--pequeno" data-tabla="profesionales">Profesionales</button>
+          <button class="boton boton--linea boton--pequeno" data-tabla="voluntarios">Voluntarios</button>
+          <button class="boton boton--linea boton--pequeno" data-tabla="apadrinamientos">Apadrinamientos</button>
+          <button class="boton boton--linea boton--pequeno" data-tabla="puntos_ayuda">Puntos de ayuda</button>
+        </div>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px" id="estados">
+          <button class="boton boton--linea boton--pequeno" data-estado="">Todos</button>
+          <button class="boton boton--primario boton--pequeno" data-estado="pendiente">Pendientes</button>
+          <button class="boton boton--linea boton--pequeno" data-estado="aprobado">Aprobados</button>
+          <button class="boton boton--linea boton--pequeno" data-estado="rechazado">Rechazados</button>
+        </div>
+
+        <div id="contenido">
+          <div class="cargando"><div class="girador"></div>Cargando…</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<script type="module" src="assets/js/pag-admin.js"></script>
+</body>
+</html>
